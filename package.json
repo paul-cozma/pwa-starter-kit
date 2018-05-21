@@ -1,0 +1,93 @@
+{
+  "name": "pwa-starter-kit",
+  "version": "0.8.0",
+  "contributors": [
+    "The Polymer Authors"
+  ],
+  "license": "BSD-3-Clause",
+  "repository": "Polymer/pwa-starter-kit",
+  "scripts": {
+    "start": "http-server dist",
+    "build": "yarn clean:dist && webpack && yarn copystatic:dist",
+    "dev": "webpack-dev-server --hot --inline",
+    "copystatic": "cp -R node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js src/vendor",
+    "copystatic:dist": "cp -R src/vendor dist/vendor && cp src/index.html dist && cp src/_redirects dist && cp -R src/data dist && cp -R src/images dist && cp -R src/admin dist",
+    "clean:dist": "rm -rf dist",
+    "postinstall": "yarn copystatic",
+    "test": "npm run test:unit && npm run test:integration",
+    "test:integration": "mocha test/integration --timeout=10000",
+    "test:unit": "polymer test --module-resolution=node --npm",
+    "test:sauce": "polymer test --module-resolution=node --npm -s 'windows 10/microsoftedge@17' -s 'macos 10.13/safari@11'",
+    "test:regenerate_screenshots": "mocha test/integration/screenshots-baseline/regenerate.js --timeout=15000"
+  },
+  "dependencies": {
+<<<<<<< HEAD
+    "@material/fab": "^0.35.0",
+    "@material/mwc-button": "^0.1.1",
+    "@material/mwc-switch": "^0.1.1",
+    "@polymer/app-layout": "^3.0.0-pre.15",
+    "@polymer/lit-element": "^0.4.0",
+    "@webcomponents/webcomponentsjs": "^2.0.0-beta.2",
+    "pwa-helpers": "polymerlabs/pwa-helpers",
+=======
+    "@polymer/app-layout": "^3.0.0-pre.19",
+    "@polymer/lit-element": "^0.5.0",
+    "@webcomponents/webcomponentsjs": "^2.0.0",
+    "pwa-helpers": "^0.8.2",
+>>>>>>> e4c7efa0ec3fec2bf3fb4f15b56fce8765fe5e3f
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0",
+    "reselect": "^3.0.1"
+  },
+  "devDependencies": {
+    "animejs": "2.2.0",
+    "autoprefixer": "^7.2.5",
+    "axe-core": "^3.0.0",
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.0.1",
+    "babel-loader": "^7.1.2",
+    "babel-minify-webpack-plugin": "0.3.1",
+    "babel-plugin-dynamic-import-webpack": "^1.0.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.6.1",
+    "chai": "^4.1.2",
+<<<<<<< HEAD
+    "css-loader": "0.28.11",
+    "front-matter": "2.3.0",
+    "http-server": "0.10.0",
+    "imagemagick": "0.1.3",
+    "markdown-json": "1.3.0",
+    "markdown-to-json": "0.5.1",
+    "markdown-with-front-matter-loader": "0.1.0",
+    "mocha": "^5.0.0",
+    "pixelmatch": "^4.0.2",
+    "postcss-html-loader": "1.0.0",
+    "postcss-loader": "2.1.5",
+    "puppeteer": "^1.0.0",
+    "raw-loader": "0.5.1",
+    "renamer": "^0.6.1",
+    "replace": "^0.3.0",
+    "stylus": "0.54.5",
+    "stylus-loader": "3.0.2",
+    "text-loader": "0.0.1",
+    "to-string-loader": "1.1.5",
+    "uglifyjs-webpack-plugin": "1.2.4",
+    "wct-browser-legacy": "0.0.1-pre.11",
+    "webpack": "3.5.5",
+    "webpack-dev-server": "2.7.1",
+    "workbox-webpack-plugin": "3.0.1",
+    "yaml-frontmatter-loader": "0.1.0"
+=======
+    "mocha": "^5.1.0",
+    "pixelmatch": "^4.0.2",
+    "polymer-cli": "^1.7.1",
+    "polyserve": "^0.27.0",
+    "prpl-server": "^1.1.0",
+    "puppeteer": "^1.4.0",
+    "renamer": "^0.6.1",
+    "replace": "^1.0.0",
+    "wct-browser-legacy": "^1.0.1"
+>>>>>>> e4c7efa0ec3fec2bf3fb4f15b56fce8765fe5e3f
+  }
+}
