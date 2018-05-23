@@ -24,7 +24,7 @@ export const SharedStyles = html`
   }
 
   section > * {
-    max-width: 600px;
+    max-width: 1200px;
     margin-right: auto;
     margin-left: auto;
   }

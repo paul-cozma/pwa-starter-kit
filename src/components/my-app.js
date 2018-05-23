@@ -178,7 +178,7 @@ class MyApp extends connect(store)(LitElement) {
 
       <!-- This gets hidden on a small screen-->
       <nav class="toolbar-list">
-        <a selected?="${_page === 'view1'}" href="/view1">View One</a>
+        <a selected?="${_page === 'home'}" href="/">Home</a>
         <a selected?="${_page === 'view2'}" href="/view2">View Two</a>
         <a selected?="${_page === 'view3'}" href="/view3">View Three</a>
       </nav>
@@ -187,15 +187,18 @@ class MyApp extends connect(store)(LitElement) {
     <app-drawer opened="${_drawerOpened}"
         on-opened-changed="${e => store.dispatch(updateDrawerState(e.target.opened))}">
       <nav class="drawer-list">
+        <a selected?="${_page === 'home'}" href="/">Home</a>
         <a selected?="${_page === 'view2'}" href="/view2">View Two</a>
         <a selected?="${_page === 'view3'}" href="/view3">View Three</a>
       </nav>
     </app-drawer>
     <!-- Main content -->
     <main class="main-content">
+      <my-home class="page" active?="${_page === 'home'}"></my-home>
       <my-view2 class="page" active?="${_page === 'view2'}"></my-view2>
       <my-view3 class="page" active?="${_page === 'view3'}"></my-view3>
       <my-view404 class="page" active?="${_page === 'view404'}"></my-view404>
+      <product-page class="page" active?="${_page === 'shop'}"></product-page>
     </main>
 
     <footer>

@@ -13,7 +13,7 @@ import { PageViewElement } from './page-view-element.js';
 import { SharedStyles } from './shared-styles.js';
 import { connect } from 'pwa-helpers/connect-mixin.js';
 import './counter-element.js';
-
+import './elements/products-list'
 // This element is connected to the redux store.
 import { store } from '../store.js';
 
@@ -26,16 +26,15 @@ store.addReducers({
   counter
 });
 
-class MyView2 extends connect(store)(PageViewElement) {
+class MyHome extends connect(store)(PageViewElement) {
   _render(props) {
     return html`
       ${SharedStyles}
       <section>
+      <products-list></products-list>
         <h2>Redux example: simple counter</h2>
         <div class="circle">${props._clicks}</div>
-        <p>This page contains a reusable <code>&lt;counter-element&gt;</code>. The
-        element is not built in a Redux-y way (you can think of it as being a
-        third-party element you got from someone else), but this page is connected to the
+        <p>This page contains a reusable codeasde but this page is connected to the
         Redux store. When the element updates its counter, this page updates the values
         in the Redux store, and you can see the total number of clicks reflected in
         the bubble above.</p>
@@ -62,8 +61,7 @@ class MyView2 extends connect(store)(PageViewElement) {
   _stateChanged(state) {
     this._clicks = state.counter.clicks;
     this._value = state.counter.value;
-    console.log(state)
   }
 }
 
-window.customElements.define('my-view2', MyView2);
+window.customElements.define('my-home', MyHome);

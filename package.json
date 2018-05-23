@@ -4,6 +4,7 @@
   "contributors": [
     "The Polymer Authors"
   ],
+  "flat": true,
   "license": "BSD-3-Clause",
   "repository": "Polymer/pwa-starter-kit",
   "scripts": {
@@ -25,9 +26,11 @@
     "@material/mwc-button": "^0.1.1",
     "@material/mwc-switch": "^0.1.1",
     "@polymer/app-layout": "^3.0.0-pre.15",
+    "@polymer/iron-image": "^3.0.0-pre.19",
     "@polymer/lit-element": "^0.4.0",
     "@webcomponents/webcomponentsjs": "^2.0.0-beta.2",
-    "pwa-helpers": "polymerlabs/pwa-helpers",
+    "axios": "^0.18.0",
+    "pwa-helpers": "^0.8.2",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
     "reselect": "^3.0.1"
@@ -64,6 +67,8 @@
     "stylus-loader": "3.0.2",
     "text-loader": "0.0.1",
     "to-string-loader": "1.1.5",
+    "typescript": "^2.8.3",
+    "typescript-lit-html-plugin": "^0.2.0",
     "uglifyjs-webpack-plugin": "1.2.4",
     "wct-browser-legacy": "0.0.1-pre.11",
     "webpack": "3.5.5",
