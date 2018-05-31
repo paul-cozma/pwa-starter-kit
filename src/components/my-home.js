@@ -16,7 +16,7 @@ import './counter-element.js';
 import './elements/products-list'
 // This element is connected to the redux store.
 import { store } from '../store.js';
-
+import './post-card'
 // These are the actions needed by this element.
 import { increment, decrement } from '../actions/counter.js';
 
@@ -30,33 +30,33 @@ class MyHome extends connect(store)(PageViewElement) {
   _render(props) {
     return html`
       ${SharedStyles}
-      <section>
-      <products-list></products-list>
-        <h2>Redux example: simple counter</h2>
-        <div class="circle">${props._clicks}</div>
-        <p>This page contains a reusable codeasde but this page is connected to the
-        Redux store. When the element updates its counter, this page updates the values
-        in the Redux store, and you can see the total number of clicks reflected in
-        the bubble above.</p>
-        <br><br>
-      </section>
-      <section>
-        <p>
-          <counter-element value="${props._value}" clicks="${props._clicks}"
-              on-counter-incremented="${() => store.dispatch(increment())}"
-              on-counter-decremented="${() => store.dispatch(decrement())}">
-          </counter-element>
-        </p>
-      </section>
+        <div class="container">
+          <div class="header">
+            <div class="logo"><img src="/images/DDD-1.png" alt=""></div>
+            <h1>Soulmatters - Pentru noi!</h1>
+        </div>
+          <post-card post="${this.data}"></post-card>
+      </div>
     `;
   }
 
   static get properties() { return {
     // This is the data from the store.
     _clicks: Number,
-    _value: Number
+    _value: Number,
+    data: Array
   }}
-
+  ready() {
+    super.ready();
+    const json = require('../data/posts.json');
+    this.data = json.sort(function(a,b){
+        var c = new Date(a.attributes.date);
+        var d = new Date(b.attributes.date);
+        return d-c;
+        });
+       console.log(json)
+  
+}
   // This is called every time something is updated in the store.
   _stateChanged(state) {
     this._clicks = state.counter.clicks;

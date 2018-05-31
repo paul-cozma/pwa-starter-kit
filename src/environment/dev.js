@@ -1,5 +1,5 @@
 export const environment = {
     production: false,
-    apiUrl: 'http://localhost:9000'
+    apiUrl: 'https://tranquil-escarpment-56882.herokuapp.com/api'
   };
   

@@ -3,9 +3,12 @@ import { SharedStyles } from '../shared-styles.js';
 import { environment} from '../../environment/dev';
 import '@polymer/iron-image/iron-image'
 import axios from 'axios'
+import { store } from '../../store.js';
+import { connect } from 'pwa-helpers/connect-mixin.js';
+import {  setProductId } from '../../actions/app.js';
 const { apiUrl } = environment
 console.log(apiUrl)
-class ProductsList extends LitElement {
+class ProductsList  extends connect(store)(LitElement) {
      _render(data) {
          return html`
            <style>
@@ -36,7 +39,7 @@ class ProductsList extends LitElement {
                         preload 
                         placeholder="${item.images[0].src.split('?')[0]}?fit=20%2C20&quality=100&strip=info&ssl=1"> 
                     </iron-image>
-                   <a href="/shop/"> <h3> ${item.name}</h3></a>
+                   <a prodId="${item.id}" href="/shop/${item.slug}"> <h3> ${item.name}</h3></a>
                     </div>
                     `})
                     )}
@@ -45,8 +48,9 @@ class ProductsList extends LitElement {
                 }
   
   async get(){
-     const data = await axios(`${apiUrl}/api/products`);
+     const data = await axios(`${apiUrl}/products`);
      return data
+
     }
     static get properties() { return {
         data: {
@@ -54,5 +58,12 @@ class ProductsList extends LitElement {
             value: () => []
         }
     }}
+    sendId(e){
+        store.dispatch(setProductId('sad'))
+    }
+    _stateChanged(state) {
+        
+        console.log(state, 'bah ha')
+    }
 }
 customElements.define('products-list', ProductsList);

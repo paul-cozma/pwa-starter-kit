@@ -18,14 +18,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <title>My app</title>
     <meta name="description" content="My App description">
 
-    <!--
-      The `<base>` tag below is present to support two advanced deployment options:
-      1) Differential serving. 2) Serving from a non-root path.
 
-      Instead of manually editing the `<base>` tag yourself, you should generally either:
-      a) Add a `basePath` property to the build configuration in your `polymer.json`.
-      b) Use the `--base-path` command-line option for `polymer build`.
-    -->
     <base href="/">
 
     <link rel="icon" href="images/favicon.ico">
@@ -90,15 +83,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       body {
         margin: 0;
         /* This is a font-stack that tries to use the system-default sans-serifs first */
-        font-family: Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+        font-family:  "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
         line-height: 1.5;
         min-height: 100vh;
+        background: #eee;
         -webkit-font-smoothing: antialiased;
       }
     </style>
   </head>
   <body>
-    <my-app appTitle="my app"></my-app>
+    <my-app appTitle="Soulmatters"></my-app>
     <noscript>
       Please enable JavaScript to view this website.
     </noscript>
@@ -106,11 +100,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <script src="/vendor/webcomponents-loader.js"></script>
     <script src="/vendor/custom-elements-es5-adapter.js"></script>
     <!-- Built with love using PWA Starter Kit -->
-<<<<<<< HEAD:src/index.html
     <script src="/bundle.js"></script>
 
-=======
-    <script type="module" src="src/components/my-app.js" crossorigin></script>
->>>>>>> e4c7efa0ec3fec2bf3fb4f15b56fce8765fe5e3f:index.html
   </body>
 </html>

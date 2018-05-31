@@ -4,7 +4,22 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const isDev = process.argv.find(arg => arg.includes('webpack-dev-server'));
 const outputPath = isDev ? resolve('src') : resolve('dist');
 const OUTPUT_PATH = resolve('./dist');
-const webpackModule = require('./stylus-loader');
+const stylusLoader = require('./stylus-loader').default;
+const babelOptions = {
+  presets: [
+    require('babel-preset-env')
+  ],
+  plugins: [
+    require('babel-plugin-syntax-dynamic-import'), 
+    require('babel-plugin-transform-object-rest-spread'), [
+    require('babel-plugin-transform-runtime'),
+    {
+      helpers: false,
+      polyfill: false,
+      regenerator: true
+    }
+  ]]
+};
 
 module.exports = {
   entry: './src/index.js',
@@ -27,7 +42,52 @@ module.exports = {
   //     ]
   //   })
   ],
-  module: webpackModule(),
+  module: {
+    rules:
+    [{
+      test: /\.html$/,
+      use: ['html-loader', 'postcss-html-loader']
+      },
+      // If you see a file that ends in .js, just send it to the babel-loader.
+      {
+        test: /\.js$/,
+        use: {
+          loader: 'babel-loader',
+          options: babelOptions
+        }
+      },
+      {
+        test: /\.md$/,
+        use: ['json-loader', 'yaml-frontmatter-loader']
+      },
+      {
+        test: /\.styl$/,
+        use: [{
+            loader: 'to-string-loader'
+          },
+          {
+            loader: 'css-loader'
+          },
+          {
+            loader: 'stylus-loader'
+          }
+         
+        ]
+      },
+      {
+        test: /\.css$/,
+        use: [
+          {
+            loader: 'to-string-loader'
+          },
+          {
+            loader: 'css-loader'
+          }
+        ]
+      }
+    ]
+  },
+  
   devServer: {
     contentBase: resolve(outputPath),
     compress: true,

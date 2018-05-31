@@ -18,8 +18,8 @@ module.exports = () => {
 
   return {
     rules: [{
-        test: /\.html$/,
-        use: ['text-loader']
+      test: /\.html$/,
+      use: ['html-loader', 'postcss-html-loader']
       },
       // If you see a file that ends in .js, just send it to the babel-loader.
       {
