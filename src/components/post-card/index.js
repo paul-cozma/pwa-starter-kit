@@ -38,6 +38,7 @@ const observer = new IntersectionObserver(entries => {
         anime({
             targets: entry.target,
             translateY: -100,
+            opacity: 1,
             duration: 200
           });
         observer.unobserve(entry.target);

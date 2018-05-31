@@ -35,11 +35,11 @@ function readFiles(files, name, folder){
       if (err) throw err  
       var content = fm(data)     
       if(name === 'posts'){     
-        fs.readFile('./src/assets/place'+ content.attributes.image, (err,data) => {         
+        fs.readFile('./src/assets/place'+ '/content'+content.attributes.image, (err,data) => {         
           if(err){
             resize({
-                src: './src'+content.attributes.image,
-                dest: './src/assets/place'+content.attributes.image,
+                src: './src'+'/content'+content.attributes.image,
+                dest: './src/assets/place'+'/content'+content.attributes.image,
                 width: 20,
                  progressive: true,
                  strip: true,

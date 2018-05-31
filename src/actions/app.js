@@ -46,8 +46,8 @@ const loadPage = (page) => async (dispatch) => {
       case 'view3':
       await import('../components/my-view3');
       break;
-    case 'shop':
-      await import('../components/elements/product-page/');
+    case 'termeni-si-conditii':
+      await import('../components/main-termeni-si-conditii');
       break;
     default:
       page = 'view404';

@@ -82,18 +82,18 @@ class MyApp extends connect(store)(LitElement) {
         display: none;
       }
 
-      .toolbar-list > a {
-        display: inline-block;
-        color: var(--app-header-text-color);
-        text-decoration: none;
-        line-height: 30px;
-        padding: 4px 24px;
-      }
+      // .toolbar-list > a {
+      //   display: inline-block;
+      //   color: var(--app-header-text-color);
+      //   text-decoration: none;
+      //   line-height: 30px;
+      //   padding: 4px 24px;
+      // }
 
-      .toolbar-list > a[selected] {
-        color: var(--app-header-selected-color);
-        border-bottom: 4px solid var(--app-header-selected-color);
-      }
+      // .toolbar-list > a[selected] {
+      //   color: var(--app-header-selected-color);
+      //   border-bottom: 4px solid var(--app-header-selected-color);
+      // }
 
       .menu-btn {
         background: none;
@@ -163,21 +163,22 @@ class MyApp extends connect(store)(LitElement) {
 
         /* The drawer button isn't shown in the wide layout, so we don't
         need to offset the title */
-        [main-title] {
+        .main-title {
           padding-right: 0px;
         }
       }
       app-header{
         z-index: 120
       }
-      [main-title] img{
-        width: 40px
+      .main-title img{
+        width: 40px;
       }
-      [main-title]{
+      .main-title{
         display: flex;
         flex-flow: wrap row;
         align-items: center;
         justify-content: center;
+        width: 100%;
       }
       app-drawer{
         z-index: 123
@@ -210,20 +211,20 @@ footer a{
     <!-- Header -->
     <app-header condenses reveals effects="waterfall">
       <app-toolbar class="toolbar-top">
-        <button class="menu-btn" title="Menu" on-click="${_ => store.dispatch(updateDrawerState(true))}">${menuIcon}</button>
-        <div main-title><span>${appTitle}</span> <img src="/images/DDD-1.png" alt=""> </div>
+        <button class="menu-btn" title="Menu" on-click="${_ => store.dispatch(updateDrawerState(true))}"></button>
+        <div class="main-title"> <a href="/"><img src="/content/images/DDD-1.png" alt=""></a> </div>
       </app-toolbar>
 
       <!-- This gets hidden on a small screen-->
       <nav class="toolbar-list">
-        <a selected?="${_page === 'home'}" href="/">Acasă</a>
+        <a selected?="${_page === 'home'}" href="/"></a>
       </nav>
     </app-header>
     <!-- Drawer content -->
     <app-drawer opened="${_drawerOpened}"
         on-opened-changed="${e => store.dispatch(updateDrawerState(e.target.opened))}">
       <nav class="drawer-list">
-        <a selected?="${_page === 'home'}" href="/">Acasă</a>
+        <a selected?="${_page === 'home'}" href="/"></a>
       </nav>
     </app-drawer>
     <!-- Main content -->
@@ -233,6 +234,7 @@ footer a{
       <my-view3 class="page" active?="${_page === 'view3'}"></my-view3>
       <main-blog class="page" active?="${_page === 'blog'}"></main-blog>
       <main-autor class="page" active?="${_page === 'autor'}"></main-autor>
+      <main-termeni-si-conditii class="page" active?="${_page === 'termeni-si-conditii'}"></main-termeni-si-conditii>
       <my-view404 class="page" active?="${_page === 'view404'}"></my-view404>
     </main>
 
@@ -269,8 +271,8 @@ footer a{
     installRouter((location) => {
       const blog = location.pathname.indexOf("/", 1) !== -1 ? location.pathname.replace(/\//, '').replace(/\//g, '-') : location.pathname
       var path = location.pathname.indexOf("/", 1) !== -1 ? '/blog' : location.pathname
-    if (location.pathname.split('/')[1] === 'autor'){
-      path = '/autor'
+    if (isNaN(parseInt(location.pathname.split('/')[1]))){
+      path = '/'+ location.pathname.split('/')[1]
     }
     store.dispatch(navigate(window.decodeURIComponent(path)))
     });

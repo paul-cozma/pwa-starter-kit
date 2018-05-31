@@ -32,7 +32,7 @@ class MyHome extends connect(store)(PageViewElement) {
       ${SharedStyles}
         <div class="container">
           <div class="header">
-            <div class="logo"><img src="/images/DDD-1.png" alt=""></div>
+            <div class="logo"><img src="/content/images/DDD-1.png" alt=""></div>
             <h1>Soulmatters - Pentru noi!</h1>
         </div>
           <post-card post="${this.data}"></post-card>
