@@ -1,6 +1,6 @@
 const {resolve, join} = require('path');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
-//const {GenerateSW} = require('workbox-webpack-plugin');
+const {GenerateSW} = require('workbox-webpack-plugin');
 const isDev = process.argv.find(arg => arg.includes('webpack-dev-server'));
 const outputPath = isDev ? resolve('src') : resolve('dist');
 const OUTPUT_PATH = resolve('./dist');
