@@ -12,7 +12,7 @@
     "build": "npm run clean:dist && webpack && npm run copystatic:dist",
     "dev": "webpack-dev-server --hot --inline",
     "copystatic": "cp -R node_modules/@webcomponents/webcomponentsjs/*.js src/vendor && cp -R node_modules/@webcomponents/webcomponentsjs/bundles/*.js src/vendor/bundles",
-    "copystatic:dist": "cp -R src/vendor dist/vendor && cp src/index.html dist && cp src/_redirects dist && cp -R src/data dist && mkdir dist/content && cp -R src/content/images dist/content/images && cp -R src/assets dist && cp -R src/admin dist",
+    "copystatic:dist": "cp -R src/vendor dist/vendor && cp src/index.html dist && cp src/_redirects dist && cp -R src/data dist && mkdir dist/content && cp -R src/content/images dist/content/images && cp -R src/assets dist && cp -R src/admin dist && cp -R src/manifest.json dist && cp -R src/service-worker.js dist",
     "clean:dist": "rm -rf dist",
     "postinstall": "npm run copystatic"
   },
