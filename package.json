@@ -4,16 +4,17 @@
   "contributors": [
     "The Polymer Authors"
   ],
+  "flat": true,
   "license": "BSD-3-Clause",
   "repository": "Polymer/pwa-starter-kit",
   "scripts": {
     "start": "http-server dist",
-    "build": "webpack && yarn copystatic:dist",
+    "build": "webpack && npm run copystatic:dist",
     "dev": "webpack-dev-server --hot --inline",
     "copystatic": "cp -R node_modules/@webcomponents/webcomponentsjs/*.js src/vendor && cp -R node_modules/@webcomponents/webcomponentsjs/bundles/*.js src/vendor/bundles",
     "copystatic:dist": "cp -R src/vendor dist/vendor && cp src/index.html dist && cp src/_redirects dist && cp -R src/data dist && cp -R src/content/images dist && cp -R src/admin dist",
     "clean:dist": "rm -rf dist",
-    "postinstall": "yarn copystatic"
+    "postinstall": "npm run copystatic"
   },
   "dependencies": {
     "@polymer/app-layout": "^3.0.0-pre.15",
