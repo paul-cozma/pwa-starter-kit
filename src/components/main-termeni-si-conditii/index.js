@@ -2,6 +2,8 @@ import { PolymerElement, html } from '@polymer/polymer';
 import  '@polymer/marked-element/marked-element';
 import  '@polymer/iron-image/iron-image';
 import axios from 'axios';
+import { updateMetadata } from 'pwa-helpers/metadata.js';
+
 import template from './template.html';
 import style from './style.styl';
 import '../image-loader'
@@ -27,6 +29,14 @@ class MainTermeniSiConditii extends PolymerElement {
         super.ready()
         const page = require('../../data/_pages/termeni-și-condiții.md')
         this.page = page
+        console.log('la dracu!',page)
+        updateMetadata({
+                
+            title:  this.page.attributes.title + ' | Soulmatters.ro',
+            description: 'Fii și tu autor pe soulmatters.ro',
+            url: document.location.href,
+            image: '/content' +  this.page.attributes.image
+        });
         console.log(this.page)
     }
 }

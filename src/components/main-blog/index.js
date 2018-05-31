@@ -36,11 +36,16 @@ export class  MainBlog extends connect(store)(LitElement)  {
         super();
     }
     _stateChanged(state) {
+
+        
+
         installRouter((location) => {
             const blog = location.pathname.indexOf("/", 1) !== -1 ? location.pathname.replace(/\//, '').replace(/\//g, '-') : false
             if(blog){
 
                 this._getArticle(blog)
+
+                
             }
           });
       }
@@ -66,7 +71,13 @@ export class  MainBlog extends connect(store)(LitElement)  {
     _getArticle(post){
         const data = require(`../../data/_posts/${post}.md`);
         this.article = data
-       
+        console.log('in mata ', data.attributes.description)
+        updateMetadata({
+            title: data.attributes.title + ' | Soulmatters.ro',
+            description: data.attributes.description,
+            url: document.location.href,
+            image: data.attributes.image
+        });
     }
     ready() {
         super.ready();

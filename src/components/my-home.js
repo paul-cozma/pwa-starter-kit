@@ -7,6 +7,7 @@ The complete set of contributors may be found at http://polymer.github.io/CONTRI
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 */
+import { updateMetadata } from 'pwa-helpers/metadata.js';
 
 import { html } from '@polymer/lit-element';
 import { PageViewElement } from './page-view-element.js';
@@ -59,6 +60,9 @@ class MyHome extends connect(store)(PageViewElement) {
 }
   // This is called every time something is updated in the store.
   _stateChanged(state) {
+    updateMetadata({
+      title: 'Acasă | Soulmatters.ro',
+  });
     this._clicks = state.counter.clicks;
     this._value = state.counter.value;
   }

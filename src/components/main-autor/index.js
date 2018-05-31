@@ -48,6 +48,14 @@ class MainAutor extends  connect(store)(PolymerElement) {
             console.log(data)
             const author = data.data.filter(item => item.attributes.slug === name)
             this.data = author[0].attributes
+            console.log(author, ' fututi mortiiii!')
+            updateMetadata({
+                
+                title:  this.data.name + ' | Soulmatters.ro',
+                description: 'Fii și tu autor pe soulmatters.ro',
+                url: document.location.href,
+                image: '/content' +  this.data.image
+            });
             console.log(this.data)
         })
         axios('/data/posts.json').then(data => {

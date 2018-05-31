@@ -65,7 +65,7 @@ class MyApp extends connect(store)(LitElement) {
       }
 
       .toolbar-top {
-        background-color: var(--app-header-background-color);
+        background-color: #212121;
       }
 
       [main-title] {
@@ -284,11 +284,7 @@ footer a{
   _didRender(properties, changeList) {
     if ('_page' in changeList) {
       const pageTitle = properties.appTitle + ' - ' + changeList._page;
-      updateMetadata({
-          title: pageTitle,
-          description: pageTitle
-          // This object also takes an image property, that points to an img src.
-      });
+     
     }
   }
 
