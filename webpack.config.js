@@ -28,19 +28,19 @@ module.exports = {
     filename: 'bundle.js'
   },
   plugins: [
-    // new UglifyJsPlugin(),
-  //   new GenerateSW({
-  //     swDest: 'sw.js',
-  // clientsClaim: true,
-  // skipWaiting: true,
-  // navigateFallback: "/index.html",
-  //     runtimeCaching: [
-  //       {
-  //         urlPattern: new RegExp('https://pensive-sinoussi-2666a0.netlify.com'),
-  //         handler: 'networkFirst'
-  //       }
-  //     ]
-  //   })
+    new UglifyJsPlugin(),
+    new GenerateSW({
+      swDest: 'sw.js',
+  clientsClaim: true,
+  skipWaiting: true,
+  navigateFallback: "/index.html",
+      runtimeCaching: [
+        {
+          urlPattern: new RegExp('https://pensive-sinoussi-2666a0.netlify.com'),
+          handler: 'networkFirst'
+        }
+      ]
+    })
   ],
   module: {
     rules:
