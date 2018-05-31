@@ -8,12 +8,12 @@
   "repository": "Polymer/pwa-starter-kit",
   "scripts": {
     "start": "http-server dist",
-    "build": "webpack && yarn run copystatic:dist",
+    "build": "webpack && yarn copystatic:dist",
     "dev": "webpack-dev-server --hot --inline",
     "copystatic": "cp -R node_modules/@webcomponents/webcomponentsjs/*.js src/vendor && cp -R node_modules/@webcomponents/webcomponentsjs/bundles/*.js src/vendor/bundles",
     "copystatic:dist": "cp -R src/vendor dist/vendor && cp src/index.html dist && cp src/_redirects dist && cp -R src/data dist && cp -R src/content/images dist && cp -R src/admin dist",
     "clean:dist": "rm -rf dist",
-    "postinstall": "yarn run copystatic"
+    "postinstall": "yarn copystatic"
   },
   "dependencies": {
     "@polymer/app-layout": "^3.0.0-pre.15",
@@ -22,11 +22,12 @@
     "@polymer/marked-element": "^3.0.0-pre.19",
     "@polymer/paper-styles": "^3.0.0-pre.18",
     "@webcomponents/webcomponentsjs": "^2.0.0-beta.2",
+    "animejs": "^2.2.0",
     "axios": "^0.18.0",
+    "moment": "^2.22.1",
     "pwa-helpers": "^0.8.2",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
-    "animejs": "^2.2.0",
     "reselect": "^3.0.1"
   },
   "devDependencies": {

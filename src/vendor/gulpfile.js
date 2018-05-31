@@ -67,7 +67,6 @@ function closurify(sourceName, fileName) {
     module_resolution: 'NODE',
     entry_point: `entrypoints/${sourceName}-index.js`,
     dependency_mode: 'STRICT',
-    process_common_js_modules: true,
     externs: [
       'externs/webcomponents.js',
       'node_modules/@webcomponents/custom-elements/externs/custom-elements.js',
@@ -79,7 +78,6 @@ function closurify(sourceName, fileName) {
   return gulp.src([
       'entrypoints/*.js',
       'src/*.js',
-      'node_modules/es-symbol/**/*.js',
       'node_modules/es6-promise/lib/es6-promise/**/*.js',
       'node_modules/@webcomponents/**/*.js',
       '!node_modules/@webcomponents/*/externs/*.js',
