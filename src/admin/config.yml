@@ -1,6 +1,8 @@
 backend:
-  name: github
-  repo: Soulmatters/soulmatters.ro # Path to your Github repository
+  name: git-gateway
+  accept_roles: #optional - accepts all users if left out
+    - admin
+    - editor
   
 media_folder: "src/content/images"
 public_folder: "/content/images"
