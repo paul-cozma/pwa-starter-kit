@@ -28,7 +28,7 @@ module.exports = {
     filename: 'bundle.js'
   },
   plugins: [
-   // new UglifyJsPlugin(),
+   new UglifyJsPlugin(),
     new GenerateSW({
       globDirectory: './dist/',
    globPatterns: ['**/*.{html,js,css}'],
