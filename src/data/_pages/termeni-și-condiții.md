@@ -9,7 +9,7 @@ description: >-
 ---
 <div class="kg-card-markdown"><p>AUTORII <a href="http://SOULMATTERS.RO">SOULMATTERS.RO</a></p>
 
-<p><a href="http://Soulmatters.ro">Soulmatters.ro</a> aparține următoarelor persoane:<br>
+<p><a href="http://Soulmatters.ro">Soulmatters.ro</a> se află în proprietatea SOULMATTERS DESIGN SRL-D și aparține următoarelor persoane:<br>
 
 Autor: Niță Andra - inițiator proiect pagină Facebook (din noiembrie 2012) și scriitor pe <a href="http://Soulmatters.ro">Soulmatters.ro</a> ( în trecut <a href="http://soulmattersforyou.blogspot.com">soulmattersforyou.blogspot.com</a> și <a href="http://blackcat007.wordpress.org">blackcat007.wordpress.org</a>)<br>
 
