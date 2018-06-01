@@ -1,7 +1,7 @@
 ---
 title: Termeni și condiții
 date: '2018-01-07 12:00am'
-image: ''
+image: /images/arrow-2029273_640.png
 description: >-
   "AUTORII SOULMATTERS.RO
 
