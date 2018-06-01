@@ -46,12 +46,6 @@ module.exports = {
           // Apply a cache-first strategy.
           handler: 'cacheFirst',
 
-          options: {
-            // Only cache 10 images.
-            expiration: {
-              maxEntries: 10,
-            },
-          }
         },
       ]
     })
