@@ -36,7 +36,7 @@ module.exports = {
   navigateFallback: "/index.html",
       runtimeCaching: [
         {
-          urlPattern: new RegExp('https://pensive-sinoussi-2666a0.netlify.com'),
+          urlPattern: new RegExp('https://soulmatters.ro/'),
           handler: 'networkFirst'
         },
         {
