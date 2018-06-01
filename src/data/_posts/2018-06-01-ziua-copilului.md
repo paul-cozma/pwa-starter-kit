@@ -1,13 +1,13 @@
 ---
-title: Ziua copilului,
-slug: 'ziua-copilului'
+title: Ziua copilului
+slug: ziua-copilului
 date: '2018-06-01 04:17'
 image: /images/hands-2847508_1920.jpg
 description: >-
   Îmi amintesc cu nostalgie de anii copilăriei. De gumele turbo lipite-n păr, de
   înghețata la cornet pe tricou, de genunghii râcâiți căzăturile cu bicicleta și
   de cei dragi de atunci.
-author: "'59b473454e63ea7e4713a3d0'"
+author: '''59b473454e63ea7e4713a3d0'''
 ---
 Îmi amintesc cu nostalgie de anii copilăriei. De gumele turbo lipite-n păr, de înghețata la cornet  pe tricou, de genunghii râcâiți  căzăturile cu bicicleta și de cei dragi de atunci.
 
