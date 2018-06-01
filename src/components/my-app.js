@@ -247,7 +247,7 @@ footer a{
     </footer>
 
     <snack-bar active?="${_snackbarOpened}">
-        You are now ${_offline ? 'offline' : 'online'}.</snack-bar>
+       Acum ești ${_offline ? 'offline' : 'online'}.</snack-bar>
     `;
   }
 

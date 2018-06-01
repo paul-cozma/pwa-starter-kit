@@ -51,14 +51,12 @@ class MyHome extends connect(store)(PageViewElement) {
     super.ready();
     const page = require('../data/_pages/acasa.md')
     this.page = page
-    console.log('la dracu!',page)
     const json = require('../data/posts.json');
     this.data = json.sort(function(a,b){
         var c = new Date(a.attributes.date);
         var d = new Date(b.attributes.date);
         return d-c;
         });
-       console.log(json)
   
 }
   // This is called every time something is updated in the store.

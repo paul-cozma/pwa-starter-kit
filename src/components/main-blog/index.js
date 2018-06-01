@@ -71,7 +71,6 @@ export class  MainBlog extends connect(store)(LitElement)  {
     _getArticle(post){
         const data = require(`../../data/_posts/${post}.md`);
         this.article = data
-        console.log('in mata ', data.attributes.description)
         updateMetadata({
             title: data.attributes.title + ' | Soulmatters.ro',
             description: data.attributes.description,

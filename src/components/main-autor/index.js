@@ -48,7 +48,6 @@ class MainAutor extends  connect(store)(PolymerElement) {
             console.log(data)
             const author = data.data.filter(item => item.attributes.slug === name)
             this.data = author[0].attributes
-            console.log(author, ' fututi mortiiii!')
             updateMetadata({
                 
                 title:  this.data.name + ' | Soulmatters.ro',
@@ -66,7 +65,6 @@ class MainAutor extends  connect(store)(PolymerElement) {
                 var d = new Date(b.attributes.date);
                 return d-c;
                 });
-            console.log(this.posts)
         })
 
     }

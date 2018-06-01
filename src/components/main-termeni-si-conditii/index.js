@@ -29,7 +29,6 @@ class MainTermeniSiConditii extends PolymerElement {
         super.ready()
         const page = require('../../data/_pages/termeni-și-condiții.md')
         this.page = page
-        console.log('la dracu!',page)
         updateMetadata({
                 
             title:  this.page.attributes.title + ' | Soulmatters.ro',

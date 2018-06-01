@@ -28,26 +28,12 @@ module.exports = {
     filename: 'bundle.js'
   },
   plugins: [
-    new UglifyJsPlugin(),
+   // new UglifyJsPlugin(),
     new GenerateSW({
-      swDest: 'sw.js',
-  clientsClaim: true,
-  skipWaiting: true,
-  navigateFallback: "/index.html",
-      runtimeCaching: [
-        {
-          urlPattern: new RegExp('https://soulmatters.ro/'),
-          handler: 'networkFirst'
-        },
-        {
-          // Match any request ends with .png, .jpg, .jpeg or .svg.
-          urlPattern: /\.(?:png|jpg|jpeg|svg)$/,
+      globDirectory: './dist/',
+   globPatterns: ['**/*.{html,js,css}'],
+   swDest: './dist/sw.js'
 
-          // Apply a cache-first strategy.
-          handler: 'cacheFirst',
-
-        },
-      ]
     })
   ],
   module: {
