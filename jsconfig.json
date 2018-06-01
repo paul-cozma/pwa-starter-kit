@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        "target": "ES6",
+        "plugins": [
+            {
+              "name": "typescript-lit-html-plugin",
+              "tags": [
+                "html",
+                "template",
+                "div",
+                "span"
+              ],
+              "showExpandedAbbreviation": true
+            }
+          ]
+    },
+    "exclude": [
+        "node_modules",
+        "**/node_modules/*"
+    ]
+}

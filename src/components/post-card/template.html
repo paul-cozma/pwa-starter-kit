@@ -1,0 +1,24 @@
+<div class="wrapper">
+        <template is="dom-repeat" items="{{post}}" on-dom-change="observe">
+        <div class="item">
+                <a href="/[[item.attributes.year]]/[[item.attributes.month]]/[[item.attributes.day]]/[[item.attributes.slug]]">
+                    <iron-image  prevent-load preload src="/assets/card[[item.attributes.image]]"    sizing="cover" fade   alt="">
+                    </iron-image>
+                </a>
+           <div class="meta">
+            <a href="/[[item.attributes.year]]/[[item.attributes.month]]/[[item.attributes.day]]/[[item.attributes.slug]]"><h3>[[item.attributes.title]]</h3></a>
+        <p>[[item.attributes.description]]...</p>
+        <!-- <autor-card uid="[[item.attributes.author]]"></autor-card> -->
+    </div>
+</div>
+</template>
+        </div>
+    <style>
+    .item {
+        @apply --shadow-elevation-2dp;
+        transition: all .3s ease-in-out;
+    }
+    .item:hover {
+        @apply --shadow-elevation-6dp;
+    }
+    </style>

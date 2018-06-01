@@ -1,0 +1,10 @@
+<div class="container">
+
+        <h1>[[page.attributes.title]]</h1>
+        <iron-image  src="/content[[page.attributes.image]]"  sizing="cover" fade preload alt=""></iron-image>
+        <div class="wrapper">
+    <marked-element markdown="[[page.body]]">
+            <div slot="markdown-html"></div>
+          </marked-element>
+        </div>
+    </div>

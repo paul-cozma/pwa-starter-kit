@@ -26,7 +26,7 @@ import { installMediaQueryWatcher } from 'pwa-helpers/media-query.js';
 import { updateMetadata } from 'pwa-helpers/metadata.js';
 
 import { store } from '../store.js';
-import { navigate, updateOffline, updateDrawerState, updateLayout } from '../actions/app.js';
+import { navigate, updateOffline, updateDrawerState, updateLayout, setProductId } from '../actions/app.js';
 
 class MyApp extends connect(store)(LitElement) {
   _render({appTitle, _page, _drawerOpened, _snackbarOpened, _offline}) {
@@ -65,7 +65,7 @@ class MyApp extends connect(store)(LitElement) {
       }
 
       .toolbar-top {
-        background-color: var(--app-header-background-color);
+        background-color: #212121;
       }
 
       [main-title] {
@@ -82,18 +82,18 @@ class MyApp extends connect(store)(LitElement) {
         display: none;
       }
 
-      .toolbar-list > a {
-        display: inline-block;
-        color: var(--app-header-text-color);
-        text-decoration: none;
-        line-height: 30px;
-        padding: 4px 24px;
-      }
+      // .toolbar-list > a {
+      //   display: inline-block;
+      //   color: var(--app-header-text-color);
+      //   text-decoration: none;
+      //   line-height: 30px;
+      //   padding: 4px 24px;
+      // }
 
-      .toolbar-list > a[selected] {
-        color: var(--app-header-selected-color);
-        border-bottom: 4px solid var(--app-header-selected-color);
-      }
+      // .toolbar-list > a[selected] {
+      //   color: var(--app-header-selected-color);
+      //   border-bottom: 4px solid var(--app-header-selected-color);
+      // }
 
       .menu-btn {
         background: none;
@@ -102,6 +102,7 @@ class MyApp extends connect(store)(LitElement) {
         cursor: pointer;
         height: 44px;
         width: 44px;
+        display: none;
       }
 
       .drawer-list {
@@ -163,43 +164,86 @@ class MyApp extends connect(store)(LitElement) {
 
         /* The drawer button isn't shown in the wide layout, so we don't
         need to offset the title */
-        [main-title] {
+        .main-title {
           padding-right: 0px;
         }
       }
+      app-header{
+        z-index: 120
+      }
+      .main-title img{
+        width: 40px;
+      }
+      .main-title{
+        display: flex;
+        flex-flow: wrap row;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+      }
+      app-drawer{
+        z-index: 123
+      }
+      footer{
+  width: 100%;
+  background: #212121;
+  padding: 20px;
+  box-sizing: border-box;
+}
+footer  .wrapper {
+  color:#fff;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  max-width: 800px;
+  width: 100%;
+  margin:0 auto;
+  font-family: "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 14px;
+  box-sizing: border-box;
+
+}
+footer a{
+  color:#fff;
+  text-decoration: none;
+}
     </style>
 
     <!-- Header -->
     <app-header condenses reveals effects="waterfall">
       <app-toolbar class="toolbar-top">
-        <button class="menu-btn" title="Menu" on-click="${_ => store.dispatch(updateDrawerState(true))}">${menuIcon}</button>
-        <div main-title>${appTitle}</div>
+        <button class="menu-btn" title="Menu" on-click="${_ => store.dispatch(updateDrawerState(true))}"></button>
+        <div class="main-title"> <a href="/"><img src="/content/images/DDD-1.png" alt=""></a> </div>
       </app-toolbar>
 
       <!-- This gets hidden on a small screen-->
       <nav class="toolbar-list">
-        <a selected?="${_page === 'view1'}" href="/view1">View One</a>
-        <a selected?="${_page === 'view2'}" href="/view2">View Two</a>
-        <a selected?="${_page === 'view3'}" href="/view3">View Three</a>
+        <a selected?="${_page === 'home'}" href="/"></a>
       </nav>
     </app-header>
     <!-- Drawer content -->
     <app-drawer opened="${_drawerOpened}"
         on-opened-changed="${e => store.dispatch(updateDrawerState(e.target.opened))}">
       <nav class="drawer-list">
-        <a selected?="${_page === 'view2'}" href="/view2">View Two</a>
-        <a selected?="${_page === 'view3'}" href="/view3">View Three</a>
+        <a selected?="${_page === 'home'}" href="/"></a>
       </nav>
     </app-drawer>
     <!-- Main content -->
     <main class="main-content">
+      <my-home class="page" active?="${_page === 'home'}"></my-home>
       <my-view2 class="page" active?="${_page === 'view2'}"></my-view2>
       <my-view3 class="page" active?="${_page === 'view3'}"></my-view3>
+      <main-blog class="page" active?="${_page === 'blog'}"></main-blog>
+      <main-autor class="page" active?="${_page === 'autor'}"></main-autor>
+      <main-termeni-si-conditii class="page" active?="${_page === 'termeni-si-conditii'}"></main-termeni-si-conditii>
       <my-view404 class="page" active?="${_page === 'view404'}"></my-view404>
     </main>
 
     <footer>
-      <p>Made with &lt;3 by the Polymer team.</p>
+    <div class="wrapper">
+      <div>Soulmatters © 2018</div>
+      <div> <a href="/termeni-si-conditii">Termeni și condiții</a> </div>
+    </div>
     </footer>
 
     <snack-bar active?="${_snackbarOpened}">
@@ -225,7 +269,14 @@ class MyApp extends connect(store)(LitElement) {
   }
 
   _firstRendered() {
-    installRouter((location) => store.dispatch(navigate(window.decodeURIComponent(location.pathname))));
+    installRouter((location) => {
+      const blog = location.pathname.indexOf("/", 1) !== -1 ? location.pathname.replace(/\//, '').replace(/\//g, '-') : location.pathname
+      var path = location.pathname.indexOf("/", 1) !== -1 ? '/blog' : location.pathname
+    if (isNaN(parseInt(location.pathname.split('/')[1]))){
+      path = '/'+ location.pathname.split('/')[1]
+    }
+    store.dispatch(navigate(window.decodeURIComponent(path)))
+    });
     installOfflineWatcher((offline) => store.dispatch(updateOffline(offline)));
     installMediaQueryWatcher(`(min-width: 460px)`,
         (matches) => store.dispatch(updateLayout(matches)));
@@ -234,11 +285,7 @@ class MyApp extends connect(store)(LitElement) {
   _didRender(properties, changeList) {
     if ('_page' in changeList) {
       const pageTitle = properties.appTitle + ' - ' + changeList._page;
-      updateMetadata({
-          title: pageTitle,
-          description: pageTitle
-          // This object also takes an image property, that points to an img src.
-      });
+     
     }
   }
 
@@ -247,6 +294,8 @@ class MyApp extends connect(store)(LitElement) {
     this._offline = state.app.offline;
     this._snackbarOpened = state.app.snackbarOpened;
     this._drawerOpened = state.app.drawerOpened;
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
   }
 }
 

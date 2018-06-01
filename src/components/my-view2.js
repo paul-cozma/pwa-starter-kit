@@ -62,6 +62,7 @@ class MyView2 extends connect(store)(PageViewElement) {
   _stateChanged(state) {
     this._clicks = state.counter.clicks;
     this._value = state.counter.value;
+    console.log(state)
   }
 }
 

@@ -15,46 +15,39 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <meta name="generator" content="PWA Starter Kit">
     <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
-    <title>My app</title>
-    <meta name="description" content="My App description">
+    <title>Soulmatters.ro</title>
+    <meta name="description" content="Soulmatters.ro">
 
-    <!--
-      The `<base>` tag below is present to support two advanced deployment options:
-      1) Differential serving. 2) Serving from a non-root path.
 
-      Instead of manually editing the `<base>` tag yourself, you should generally either:
-      a) Add a `basePath` property to the build configuration in your `polymer.json`.
-      b) Use the `--base-path` command-line option for `polymer build`.
-    -->
     <base href="/">
 
-    <link rel="icon" href="images/favicon.ico">
+    <link rel="icon" href="/content/images/icons/favicon-96x96.png">
 
     <!-- See https://goo.gl/OOhYW5 -->
     <link rel="manifest" href="manifest.json">
 
     <!-- See https://goo.gl/qRE0vM -->
-    <meta name="theme-color" content="#3f51b5">
+    <meta name="theme-color" content="#5c007a">
 
     <!-- Add to homescreen for Chrome on Android. Fallback for manifest.json -->
     <meta name="mobile-web-app-capable" content="yes">
-    <meta name="application-name" content="My App">
+    <meta name="application-name" content="Soulmatters.ro">
 
     <!-- Add to homescreen for Safari on iOS -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="My App">
+    <meta name="apple-mobile-web-app-title" content="Soulmatters.ro">
 
     <!-- Homescreen icons -->
-    <link rel="apple-touch-icon" href="images/manifest/icon-48x48.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="images/manifest/icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="96x96" href="images/manifest/icon-96x96.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="images/manifest/icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="192x192" href="images/manifest/icon-192x192.png">
+    <link rel="apple-touch-icon" href="content/images/manifest/icon-48x48.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="content/images/icons/icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="96x96" href="content/images/icons/icon-96x96.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="content/images/icons/icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="192x192" href="content/images/icons/icon-192x192.png">
 
     <!-- Tile icon for Windows 8 (144x144 + tile color) -->
-    <meta name="msapplication-TileImage" content="images/manifest/icon-144x144.png">
-    <meta name="msapplication-TileColor" content="#3f51b5">
+    <meta name="msapplication-TileImage" content="content/images/icons/icon-144x144.png">
+    <meta name="msapplication-TileColor" content="#5c007a">
     <meta name="msapplication-tap-highlight" content="no">
 
     <!-- Default twitter cards -->
@@ -62,13 +55,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <meta name="twitter:site" content="@username">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="my-app">
-    <meta property="og:image" content="images/manifest/icon-144x144.png" />
+    <meta property="og:image" content="content/images/manifest/icon-144x144.png" />
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
     <script>
       // Load and register pre-caching Service Worker
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', function() {
-          navigator.serviceWorker.register('service-worker.js', {
+          navigator.serviceWorker.register('sw.js', {
             scope: '/',
           });
         });
@@ -78,7 +72,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       // https://github.com/reactjs/redux/issues/2907
       window.process = { env: { NODE_ENV: 'production' } };
     </script>
-
+<script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", user => {
+      if (!user) {
+        window.netlifyIdentity.on("login", () => {
+          document.location.href = "/admin/";
+        });
+      }
+    });
+  }
+</script>
     <!-- Add any global styles for body, document, etc. -->
     <style>
       @font-face {
@@ -90,15 +94,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       body {
         margin: 0;
         /* This is a font-stack that tries to use the system-default sans-serifs first */
-        font-family: Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+        font-family:  "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
         line-height: 1.5;
         min-height: 100vh;
+        background: #eee;
         -webkit-font-smoothing: antialiased;
       }
     </style>
   </head>
   <body>
-    <my-app appTitle="my app"></my-app>
+    <my-app appTitle="Soulmatters"></my-app>
     <noscript>
       Please enable JavaScript to view this website.
     </noscript>
@@ -106,11 +111,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <script src="/vendor/webcomponents-loader.js"></script>
     <script src="/vendor/custom-elements-es5-adapter.js"></script>
     <!-- Built with love using PWA Starter Kit -->
-<<<<<<< HEAD:src/index.html
     <script src="/bundle.js"></script>
 
-=======
-    <script type="module" src="src/components/my-app.js" crossorigin></script>
->>>>>>> e4c7efa0ec3fec2bf3fb4f15b56fce8765fe5e3f:index.html
   </body>
 </html>
