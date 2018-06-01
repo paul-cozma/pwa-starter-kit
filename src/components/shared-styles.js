@@ -107,7 +107,6 @@ export const SharedStyles = html`
         padding: 20px;
     }
     .header{
-        background: url(/content/images/meteorit.jpg) center center no-repeat;
         height: 550px;
         width:100%;
         margin-top: -60px;

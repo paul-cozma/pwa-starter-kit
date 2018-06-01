@@ -1,8 +1,8 @@
 backend:
   name: github
-  repo: Soulmatters/soulmatters.ro # Path to your Github repository
+  repo: Soulmatters/pwa-starter-kit # Path to your Github repository
   
-media_folder: "src/content/imags"
+media_folder: "src/content/images"
 public_folder: "content/images"
 
 collections: #A list of collections the CMS should be able to edit
@@ -57,7 +57,7 @@ collections: #A list of collections the CMS should be able to edit
     description: >
       The description is a great place for tone setting, high level information, and editing
       guidelines that are specific to a collection.
-    folder: "src/_pages"
+    folder: "src/data/_pages"
     slug: "{{slug}}"
     create: true # Allow users to create new documents in this collection
     fields: # The fields each document in this collection have

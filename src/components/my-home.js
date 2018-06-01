@@ -31,10 +31,9 @@ class MyHome extends connect(store)(PageViewElement) {
   _render(props) {
     return html`
       ${SharedStyles}
-        <div class="container">
-          <div class="header">
-            <div class="logo"><img src="/content/images/DDD-1.png" alt=""></div>
-            <h1>Soulmatters - Pentru noi!</h1>
+        <div class="container" >
+          <div class="header" style$="background:url(${this.page.attributes.image})center center no-repeat">
+            <h1>${this.page.attributes.description}</h1>
         </div>
           <post-card post="${this.data}"></post-card>
       </div>
@@ -45,10 +44,14 @@ class MyHome extends connect(store)(PageViewElement) {
     // This is the data from the store.
     _clicks: Number,
     _value: Number,
-    data: Array
+    data: Array,
+    page: Object
   }}
   ready() {
     super.ready();
+    const page = require('../data/_pages/acasa.md')
+    this.page = page
+    console.log('la dracu!',page)
     const json = require('../data/posts.json');
     this.data = json.sort(function(a,b){
         var c = new Date(a.attributes.date);
