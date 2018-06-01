@@ -3,9 +3,10 @@ title: Termeni și condiții
 date: '2018-01-07 12:00am'
 image: ''
 description: >-
-  "AUTORII SOULMATTERS.ROSoulmatters.ro aparține următoarelor persoane Autor 
-  Niță Andra - inițiator proiect pagină Facebook (din noiembrie 2012) și
-  scriitor pe Soulmatters.ro"
+  "AUTORII SOULMATTERS.RO
+
+  Soulmatters.ro aparține următoarelor persoane Autor  Niță Andra - inițiator
+  proiect pagină Facebook (din noiembrie 2012) și scriitor pe Soulmatters.ro"
 ---
 
 <p><a href="http://Soulmatters.ro">Soulmatters.ro</a> se află în proprietatea SOULMATTERS DESIGN SRL-D și aparține următoarelor persoane:<br>
