@@ -1,6 +1,6 @@
 ---
 title: Covoare
-date: '2018-03-17 10:18am'
+date: '2018-03-17 10:18'
 image: /images/rainbow-1339809_640.jpg
 description: >-
   "Vorbim de un covor frumos țesut, viu colorat și mătăsos. Acoperă cam tot ce

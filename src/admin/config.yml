@@ -2,8 +2,8 @@ backend:
   name: github
   repo: Soulmatters/pwa-starter-kit # Path to your Github repository
   
-media_folder: "src/content/images"
-public_folder: "content/images"
+media_folder: "src/images"
+public_folder: "images"
 
 collections: #A list of collections the CMS should be able to edit
   - name: "blog" # Used in routes, ie.: /admin/collections/:slug/edit
@@ -17,7 +17,7 @@ collections: #A list of collections the CMS should be able to edit
     create: true # Allow users to create new documents in this collection
     fields: # The fields each document in this collection have
       - {label: "Title", name: "title", widget: "string", tagname: "h1"}
-      - {label: "Publish Date", name: "date", widget: "datetime", format: "YYYY-MM-DD hh:mma"}
+      - {label: "Publish Date", name: "date", widget: "datetime", format: "YYYY-MM-DD hh:mm"}
       - {label: "Cover Image", name: "image", widget: "image", required: false, tagname: ""}
       - {label: "Description", name: "description", widget: "text"}
       - {label: "Author", name: "author", widget: "relation", collection: "user", searchFields: ["name", "id"], valueField: "id", displayFields: ["name"]}

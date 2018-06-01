@@ -15,7 +15,6 @@ const resize = require('./resize');
 readDirectory()
 function readDirectory(){
   fs.readdir(folder, (err, files) => {   
-      console.log(files)
      readFiles(files, 'posts', folder)
   });
   fs.readdir(users, (err, files) => {   
@@ -35,11 +34,11 @@ function readFiles(files, name, folder){
       if (err) throw err  
       var content = fm(data)     
       if(name === 'posts'){     
-        fs.readFile('./src/assets/place'+ '/content'+content.attributes.image, (err,data) => {         
+        fs.readFile('./src/assets/place' + content.attributes.image, (err,data) => {         
           if(err){
             resize({
-                src: './src'+'/content'+content.attributes.image,
-                dest: './src/assets/place'+'/content'+content.attributes.image,
+                src: './src'+ content.attributes.image,
+                dest: './src/assets/place'+ content.attributes.image,
                 width: 20,
                  progressive: true,
                  strip: true,
