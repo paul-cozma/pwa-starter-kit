@@ -56,6 +56,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="my-app">
     <meta property="og:image" content="content/images/manifest/icon-144x144.png" />
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
     <script>
       // Load and register pre-caching Service Worker
@@ -71,7 +72,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       // https://github.com/reactjs/redux/issues/2907
       window.process = { env: { NODE_ENV: 'production' } };
     </script>
-
+<script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", user => {
+      if (!user) {
+        window.netlifyIdentity.on("login", () => {
+          document.location.href = "/admin/";
+        });
+      }
+    });
+  }
+</script>
     <!-- Add any global styles for body, document, etc. -->
     <style>
       @font-face {
