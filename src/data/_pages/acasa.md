@@ -1,10 +1,9 @@
 ---
-title: "Acasa"
-image: "/images/steinar-engeland-225236-1.jpg"
-description: >-
-  "AUTORII SOULMATTERS.ROSoulmatters.ro aparține următoarelor persoane Autor 
-  Niță Andra - inițiator proiect pagină Facebook (din noiembrie 2012) și
-  scriitor pe Soulmatters.ro"
+title: Acasa
+date: '2018-06-01 12:00am'
+image: /content/images/owl-1834152_1920.jpg
+description: |
+  Soulmatters - Pentru noi!
 ---
 
 test
