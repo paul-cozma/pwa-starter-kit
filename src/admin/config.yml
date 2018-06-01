@@ -2,8 +2,8 @@ backend:
   name: github
   repo: Soulmatters/soulmatters.ro # Path to your Github repository
   
-media_folder: "src/content"
-public_folder: "content"
+media_folder: "src/content/imags"
+public_folder: "content/images"
 
 collections: #A list of collections the CMS should be able to edit
   - name: "blog" # Used in routes, ie.: /admin/collections/:slug/edit
