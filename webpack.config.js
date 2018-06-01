@@ -51,7 +51,8 @@ module.exports = {
             expiration: {
               maxEntries: 10,
             },
-          },
+          }
+        },
       ]
     })
   ],
