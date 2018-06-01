@@ -7,7 +7,6 @@ description: >-
   Niță Andra - inițiator proiect pagină Facebook (din noiembrie 2012) și
   scriitor pe Soulmatters.ro"
 ---
-<div class="kg-card-markdown"><p>AUTORII <a href="http://SOULMATTERS.RO">SOULMATTERS.RO</a></p>
 
 <p><a href="http://Soulmatters.ro">Soulmatters.ro</a> se află în proprietatea SOULMATTERS DESIGN SRL-D și aparține următoarelor persoane:<br>
 
