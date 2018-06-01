@@ -5,14 +5,14 @@ import anime from 'animejs';
 import '../autor-card';
 import '@polymer/iron-image/iron-image'
 import '@polymer/paper-styles/paper-styles.js';
-
+import moment from 'moment';
 class PostCard extends PolymerElement {
     static get template()  {
          return html([`${template} <style>${style} </style>`])
 }
     ready(){
         super.ready()
- 
+ console.log(this.post)
         }
     static get properties() { return {
         post: {
@@ -21,13 +21,22 @@ class PostCard extends PolymerElement {
         },     
     }
     }
+    year(date){
+      return moment(date).format("YYYY")
+    }
+    month(date){
+      return moment(date).format("MM")
+    }
+    day(date){
+      return moment(date).format("DD")
+    }
     observe(){
         const myImgs = this.shadowRoot.querySelectorAll('.item');
         const config = {
             rootMargin: '50px 20px 75px 30px',
             threshold: [0, 0.25, 0.75, 1]
           };
-
+         
 const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.intersectionRatio > 0) {

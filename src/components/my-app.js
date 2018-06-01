@@ -213,7 +213,7 @@ footer a{
     <app-header condenses reveals effects="waterfall">
       <app-toolbar class="toolbar-top">
         <button class="menu-btn" title="Menu" on-click="${_ => store.dispatch(updateDrawerState(true))}"></button>
-        <div class="main-title"> <a href="/"><img src="/content/images/DDD-1.png" alt=""></a> </div>
+        <div class="main-title"> <a href="/"><img src="/images/DDD-1.png" alt=""></a> </div>
       </app-toolbar>
 
       <!-- This gets hidden on a small screen-->
