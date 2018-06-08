@@ -8,7 +8,7 @@ import { installRouter } from 'pwa-helpers/router.js';
 import { installOfflineWatcher } from 'pwa-helpers/network.js';
 import { installMediaQueryWatcher } from 'pwa-helpers/media-query.js';
 import { updateMetadata } from 'pwa-helpers/metadata.js';
-
+import { config } from '../../config'
 import { store } from '../../store.js';
 import { navigate, updateOffline, updateDrawerState, updateLayout, setProductId } from '../../actions/app.js';
 
@@ -45,7 +45,7 @@ class MainAutor extends  connect(store)(PolymerElement) {
     _idChanged(name){
         this.set('posts', [])
         this.set('pageNumber', 1)
-        axios(`http://127.0.0.1/wp-json/wp/v2/users/?_embed&slug=${name}`).then(data => {
+        axios(`${config.url}/users/?_embed&slug=${name}`).then(data => {
             console.log(data)
             this.data = data.data[0]
             updateMetadata({
@@ -61,7 +61,7 @@ class MainAutor extends  connect(store)(PolymerElement) {
 
     }
     getPosts(id, page){
-        axios(`http://127.0.0.1/wp-json/wp/v2/posts/?_embed&author=${id}&page=${page}`).then(data => {
+        axios(`${config.url}/posts/?_embed&author=${id}&page=${page}`).then(data => {
            this.set('totalPosts', data.headers['x-wp-total'])
 
             if(data.code === 'rest_post_invalid_page_number'){

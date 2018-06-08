@@ -16,7 +16,7 @@ import { connect } from 'pwa-helpers/connect-mixin.js';
 import { store } from '../../store.js';
 import '../post-card'
 // These are the actions needed by this element.
-
+import { config } from '../../config'
 
 
 class MyHome extends connect(store)(PolymerElement) {
@@ -61,7 +61,7 @@ class MyHome extends connect(store)(PolymerElement) {
   
 }
 async getPosts(page){
- fetch(`http://127.0.0.1/wp-json/wp/v2/posts/?_embed&page=${page}`).then(data => data.json()).then(res => {
+ fetch(`${config.url}/posts/?_embed&page=${page}&per_page=6`).then(data => data.json()).then(res => {
    console.log('such resss',res)
    if(page === 1){
      this.data = res

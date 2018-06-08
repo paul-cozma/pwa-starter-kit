@@ -2,7 +2,7 @@
         <template is="dom-repeat" items="{{post}}" on-dom-change="observe">
         <div class="item">
                 <a class="iron-image" href="/blog/[[year(item.attributes.date)]]/[[month(item.attributes.date)]]/[[day(item.attributes.date)]]/[[item.slug]]">
-                    <iron-image  prevent-load preload src="[[item._embedded.wp:featuredmedia.0.media_details.sizes.medium.source_url]]"    sizing="cover" fade   alt="">
+                    <iron-image  prevent-load preload placeholder="[[item._embedded.wp:featuredmedia.0.media_details.sizes.thumbnail.source_url]]" src="[[item._embedded.wp:featuredmedia.0.media_details.sizes.medium.source_url]]"    sizing="cover" fade   alt="">
                     </iron-image>
                 </a>
            <div class="meta">

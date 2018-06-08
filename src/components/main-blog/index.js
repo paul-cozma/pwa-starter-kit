@@ -14,7 +14,7 @@ import { installRouter } from 'pwa-helpers/router.js';
 import { installOfflineWatcher } from 'pwa-helpers/network.js';
 import { installMediaQueryWatcher } from 'pwa-helpers/media-query.js';
 import { updateMetadata } from 'pwa-helpers/metadata.js';
-
+import { config } from '../../config'
 import { store } from '../../store.js';
 import { navigate, updateOffline, updateDrawerState, updateLayout, setProductId } from '../../actions/app.js';
 
@@ -45,7 +45,7 @@ export class  MainBlog extends connect(store)(PolymerElement)  {
         
      }
      this.set('article', loading)
-     const blog = await fetch(`http://127.0.0.1/wp-json/wp/v2/posts/?_embed&slug=${post}`).then(data => data.json())
+     const blog = await fetch(`${config.url}/posts/?_embed&slug=${post}`).then(data => data.json())
           console.log(blog)
           this.article = blog[0]
   
