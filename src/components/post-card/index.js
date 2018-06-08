@@ -4,6 +4,7 @@ import style from './style.styl';
 import anime from 'animejs';
 import '../autor-card';
 import '@polymer/iron-image/iron-image'
+import '@polymer/marked-element/marked-element'
 import '@polymer/paper-styles/paper-styles.js';
 import moment from 'moment';
 class PostCard extends PolymerElement {
@@ -12,12 +13,12 @@ class PostCard extends PolymerElement {
 }
     ready(){
         super.ready()
- console.log(this.post)
         }
     static get properties() { return {
         post: {
          type: Array,
-         value: () => []
+      value: () => []
+         
         },     
     }
     }
@@ -40,10 +41,14 @@ class PostCard extends PolymerElement {
 const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.intersectionRatio > 0) {
-        entry.target.style.display ='block'
+        console.log(this.$.wrapper.lastElementChild.previousElementSibling === entry.target)
+        if(this.$.wrapper.lastElementChild.previousElementSibling === entry.target){
+  this.dispatchEvent(new CustomEvent('template-loaded', { bubbles: true, composed: true }));
+          
+        }
+        entry.target.style.display ='flex'
         const image = entry.target.querySelector('a').querySelector('iron-image')
         image.preventLoad = false
-        image.placeholder = image.src.replace(/card/, 'place')
         anime({
             targets: entry.target,
             translateY: -100,
@@ -59,6 +64,8 @@ const observer = new IntersectionObserver(entries => {
   myImgs.forEach(image => {
     observer.observe(image);
   });  
+
+
     }
 }
 window.customElements.define('post-card', PostCard);

@@ -12,21 +12,9 @@ class AutorCard extends PolymerElement {
         }
     static get properties() { return {
         uid: {
-         type: String,
-         observer: '_idChanged'
+         type: Object,
         },
-        author: {
-            type: Object,
-            value: () => {}
-        }
     }}
-    _idChanged(uid){
-        axios('../../data/users.json').then(data => {
-            const author = data.data.filter(item => item.attributes.id === uid)
-            this.author = author[0].attributes;
-            
-        })
-
-    }
+    
 }
 window.customElements.define('autor-card', AutorCard);

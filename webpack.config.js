@@ -28,13 +28,13 @@ module.exports = {
     filename: 'bundle.js'
   },
   plugins: [
-   new UglifyJsPlugin(),
-    new GenerateSW({
-      globDirectory: './dist/',
-   globPatterns: ['**/*.{html,js,css}'],
-   swDest: './sw.js'
+  //  new UglifyJsPlugin(),
+  //   new GenerateSW({
+  //     globDirectory: './dist/',
+  //  globPatterns: ['**/*.{html,js,css}'],
+  //  swDest: './sw.js'
 
-    })
+  //   })
   ],
   module: {
     rules:
