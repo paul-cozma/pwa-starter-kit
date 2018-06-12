@@ -82,7 +82,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           console.log('Service worker is not supported');
           return;
         }
-  
+        window.addEventListener('load', function() {
         navigator.serviceWorker.register('/sw.js')
           .then(function(registration) {
             registration.onupdatefound = function() {
@@ -104,6 +104,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           }).catch(function(e) {
             console.error('Error during service worker registration:', e);
           });
+        });
       })();
   
       document.addEventListener('WebComponentsReady', function componentsReady() {
