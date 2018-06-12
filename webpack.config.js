@@ -25,10 +25,15 @@ const processEnv = {
  */
 const copyStatics = {
   copyWebcomponents: [{
-    from: resolve('./node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js'),
+    from: resolve('./node_modules/@webcomponents/webcomponentsjs/*.js'),
     to: join(OUTPUT_PATH, 'vendor'),
     flatten: true
-  },  {
+  }, 
+  {
+    from: resolve('./node_modules/@webcomponents/shadycss/*.js'),
+    to: join(OUTPUT_PATH, 'vendor'),
+    flatten: true
+  }, {
     from: resolve('./node_modules/@webcomponents/webcomponentsjs/bundles/*.js'),
     to: join(OUTPUT_PATH, 'vendor/bundles'),
     flatten: true

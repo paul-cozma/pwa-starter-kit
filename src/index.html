@@ -107,23 +107,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         });
       })();
   
-      document.addEventListener('WebComponentsReady', function componentsReady() {
-        document.removeEventListener('WebComponentsReady', componentsReady, false);
   
-        var script = document.createElement('script');
-        script.async = true
-        script.src = './bundle.js';
-        script.setAttribute('nomodule', true);
-  
-        var scriptModule = document.createElement('script');
-        scriptModule.async = true
-        scriptModule.src = './module.bundle.js';
-        scriptModule.setAttribute('type', 'module');
-  
-        var refScript = document.body.getElementsByTagName('script')[0];
-        refScript.parentNode.insertBefore(script, refScript);
-        refScript.parentNode.insertBefore(scriptModule, refScript);
-      }, false);
     </script>
   </head>
   <body>
@@ -135,6 +119,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <script src="./vendor/webcomponents-loader.js"></script>
     <script src="./vendor/custom-elements-es5-adapter.js" nomodule></script>
     <!-- Built with love using PWA Starter Kit -->
-
+    <script async src="./module.bundle.js" type="module"></script>
+    <script async src="./bundle.js" nomodule></script>
   </body>
 </html>
