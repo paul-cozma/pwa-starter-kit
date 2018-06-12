@@ -208,6 +208,65 @@ footer a{
   color:#fff;
   text-decoration: none;
 }
+.fadeOutDown {
+    -webkit-animation: fadeOutDown 500ms ease-in-out; /* Chrome, Safari, Opera */
+    animation: fadeOutDown 500ms ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes fadeOutDown {
+    0% {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        -webkit-transform: translateY(-40px);
+    }
+}
+
+/* Standard syntax */
+@keyframes fadeOutDown {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-40px);
+    }
+}
+.fadeinDown {
+    -webkit-animation: fadeInDown 500ms ease-in-out; /* Chrome, Safari, Opera */
+    animation: fadeInDown 500ms ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        -webkit-transform: translateY(-40px);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+    }
+}
+
+/* Standard syntax */
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-40px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
     </style>
 
     <app-location route="{{route}}"></app-location>
@@ -255,8 +314,6 @@ footer a{
     <!-- Main content -->
     <iron-pages class="main-content" selected="[[page]]" class="menu" attr-for-selected="nume">
       <my-home nume="acasa" ></my-home>
-      <my-view2 nume="view2" ></my-view2>
-      <my-view3 nume="view3" ></my-view3>
       <main-blog nume="blog" slug="{{blogData.slug}}" ></main-blog>
       <main-autor nume="autor" autor="{{autorData.name}}" ></main-autor>
       <main-login nume="login" ></main-login>
@@ -312,11 +369,14 @@ footer a{
   _routePageChanged(page) {   
     console.log(page, 'asdasda')
     this.page = page || 'acasa';
+   
     document.body.scrollTop = 0; // For Safari
     document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 }
-_pageChanged(page){
-  console.log(page)
+_pageChanged(page, old){
+  console.log(page, old, 'old, new')
+  this.shadowRoot.querySelector(`[nume=${old || 'acasa'}]`).classList.add('fadeinUp')
+  this.shadowRoot.querySelector(`[nume=${page || 'acasa'}]`).classList.add('fadeinDown')
   switch (page) {
       case 'acasa':
           return import('./my-home')

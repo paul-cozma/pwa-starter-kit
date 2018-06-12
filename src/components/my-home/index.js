@@ -18,16 +18,22 @@ import '../post-card'
 // These are the actions needed by this element.
 import { config } from '../../config'
 
-
+import style from './style.styl'
 class MyHome extends connect(store)(PolymerElement) {
   static get template() {
     return html([`
     <style>${SharedStyles}</style>
+    <style>${style}</style>
         <div class="container" id="doc">
           <div class="header" style$="background:url([[page.attributes.image]])center center no-repeat">
             <h1>[[page.attributes.description]]</h1>
         </div>
           <post-card post="{{data}}"></post-card>
+          <template is="dom-if" if={{loading}}>
+          <div class="loader"></div>
+          </template>
+          
+         
       </div>
     `]);
   }
@@ -49,7 +55,6 @@ class MyHome extends connect(store)(PolymerElement) {
  async ready() {
     super.ready();
     this.addEventListener('template-loaded', (e) => {
-   
 
       this.observe(e)
    
@@ -61,15 +66,19 @@ class MyHome extends connect(store)(PolymerElement) {
   
 }
 async getPosts(page){
- fetch(`${config.url}/posts/?_embed&page=${page}&per_page=6`).then(data => data.json()).then(res => {
+  this.loading = true
+ fetch(`${config.url}/posts/?_embed&page=${page}&per_page=12`).then(data => data.json()).then(res => {
    console.log('such resss',res)
    if(page === 1){
      this.data = res
+  this.loading = false
+     
    }else if(res.code === 'rest_post_invalid_page_number'){
     this.removeEventListener('template-loaded')
    }else{
 
      this.set('data', this.data.concat(res))
+     this.loading = false
     }
   }).catch(err => {
     console.log(err)

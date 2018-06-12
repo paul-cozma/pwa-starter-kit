@@ -1,6 +1,6 @@
 const {resolve, join} = require('path');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
-const {GenerateSW} = require('workbox-webpack-plugin');
+const workbox = require('workbox-webpack-plugin');
 const isDev = process.argv.find(arg => arg.includes('webpack-dev-server'));
 const outputPath = isDev ? resolve('src') : resolve('dist');
 const OUTPUT_PATH = resolve('./dist');
@@ -28,13 +28,17 @@ module.exports = {
     filename: 'bundle.js'
   },
   plugins: [
-  //  new UglifyJsPlugin(),
-  //   new GenerateSW({
-  //     globDirectory: './dist/',
-  //  globPatterns: ['**/*.{html,js,css}'],
-  //  swDest: './sw.js'
+   new UglifyJsPlugin(),
+    new workbox.GenerateSW({
+      clientsClaim: true,
+      skipWaiting: true,
+      swDest: 'sw.js',
+      runtimeCaching: [{
+        urlPattern: new RegExp('https://api.soulmatters.ro'),
+        handler: 'staleWhileRevalidate'
+      }]
 
-  //   })
+    })
   ],
   module: {
     rules:
