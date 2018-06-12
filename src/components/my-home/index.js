@@ -52,7 +52,7 @@ class MyHome extends connect(store)(PolymerElement) {
       value: 1
     }
   }}
- async ready() {
+ ready() {
     super.ready();
     this.addEventListener('template-loaded', (e) => {
 

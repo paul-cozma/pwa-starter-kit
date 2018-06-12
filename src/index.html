@@ -56,33 +56,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="my-app">
     <meta property="og:image" content="content/images/manifest/icon-144x144.png" />
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
-    <script>
-      // Load and register pre-caching Service Worker
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function() {
-          navigator.serviceWorker.register('sw.js', {
-            scope: '/',
-          });
-        });
-      }
-
-      // Redux assumes `process.env.NODE_ENV` exists in the ES module build.
-      // https://github.com/reactjs/redux/issues/2907
-      window.process = { env: { NODE_ENV: 'production' } };
-    </script>
-<script>
-  if (window.netlifyIdentity) {
-    window.netlifyIdentity.on("init", user => {
-      if (!user) {
-        window.netlifyIdentity.on("login", () => {
-          document.location.href = "/admin/";
-        });
-      }
-    });
-  }
-</script>
+    
     <!-- Add any global styles for body, document, etc. -->
     <style>
       @font-face {
@@ -101,6 +76,54 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         -webkit-font-smoothing: antialiased;
       }
     </style>
+    <script>
+      (function() {
+        if (!('serviceWorker' in navigator)) {
+          console.log('Service worker is not supported');
+          return;
+        }
+  
+        navigator.serviceWorker.register('/sw.js')
+          .then(function(registration) {
+            registration.onupdatefound = function() {
+              if (navigator.serviceWorker.controller) {
+                var installingWorker = registration.installing;
+                  installingWorker.onstatechange = function() {
+                    switch (installingWorker.state) {
+                      case 'installed':
+                        break;
+                      case 'redundant':
+                        throw new Error('The installing ' +
+                                        'service worker became redundant.');
+                      default:
+                        // Ignore
+                    }
+                };
+              }
+            };
+          }).catch(function(e) {
+            console.error('Error during service worker registration:', e);
+          });
+      })();
+  
+      document.addEventListener('WebComponentsReady', function componentsReady() {
+        document.removeEventListener('WebComponentsReady', componentsReady, false);
+  
+        var script = document.createElement('script');
+        script.async = true
+        script.src = './bundle.js';
+        script.setAttribute('nomodule', true);
+  
+        var scriptModule = document.createElement('script');
+        scriptModule.async = true
+        scriptModule.src = './module.bundle.js';
+        scriptModule.setAttribute('type', 'module');
+  
+        var refScript = document.body.getElementsByTagName('script')[0];
+        refScript.parentNode.insertBefore(script, refScript);
+        refScript.parentNode.insertBefore(scriptModule, refScript);
+      }, false);
+    </script>
   </head>
   <body>
     <my-app appTitle="Soulmatters"></my-app>
@@ -108,10 +131,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       Please enable JavaScript to view this website.
     </noscript>
     <!-- Load webcomponents-loader.js to check and load any polyfills your browser needs -->
-    <script src="/vendor/webcomponents-loader.js"></script>
-    <script src="/vendor/custom-elements-es5-adapter.js"></script>
+    <script src="./vendor/webcomponents-loader.js"></script>
+    <script src="./vendor/custom-elements-es5-adapter.js" nomodule></script>
     <!-- Built with love using PWA Starter Kit -->
-    <script src="/bundle.js"></script>
 
   </body>
 </html>
