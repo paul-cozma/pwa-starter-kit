@@ -38,7 +38,7 @@ const copyStatics = {
     flatten: true
   }],
   copyOthers: [{
-    from: 'assets/**',
+    from: 'images/**',
     context: resolve('./src'),
     to: OUTPUT_PATH
   }, {

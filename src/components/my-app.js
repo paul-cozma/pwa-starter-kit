@@ -327,7 +327,7 @@ footer a{
       <div> <a href="/termeni-si-conditii">Termeni și condiții</a> </div>
     </div>
     </footer>
-    <paper-toast  id="toast" text="test"></paper-toast>
+    <paper-toast  id="toast" text="Bun venit!"></paper-toast>
   
     `;
   }
@@ -352,10 +352,10 @@ footer a{
       routeData: String
     }
   }
-  _offlineChanged(status){
+  _offlineChanged(status, old){
     if(status){
       this.$.toast.text = 'Acum sunteți offline'
-    }else{
+    }else if(old){
       this.$.toast.text = 'Acum sunteți online'
 
     }
@@ -367,14 +367,12 @@ footer a{
     ];
   }
   _routePageChanged(page) {   
-    console.log(page, 'asdasda')
     this.page = page || 'acasa';
    
     document.body.scrollTop = 0; // For Safari
     document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 }
 _pageChanged(page, old){
-  console.log(page, old, 'old, new')
   this.shadowRoot.querySelector(`[nume=${old || 'acasa'}]`).classList.add('fadeinUp')
   this.shadowRoot.querySelector(`[nume=${page || 'acasa'}]`).classList.add('fadeinDown')
   switch (page) {
