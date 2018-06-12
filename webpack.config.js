@@ -65,7 +65,11 @@ const buildPlugins = [
     globDirectory: OUTPUT_PATH,
     globPatterns: ['**/!(*map*)'],
     globIgnores: ['**/sw.js'],
-    swDest: join(OUTPUT_PATH, 'sw.js')
+    swDest: join(OUTPUT_PATH, 'sw.js'),
+    runtimeCaching: [{
+      urlPattern: new RegExp('https://api.soulmatters.ro'),
+      handler: 'staleWhileRevalidate'
+    }]
   })
 ];
 
