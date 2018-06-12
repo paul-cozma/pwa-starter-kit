@@ -49,8 +49,7 @@
         padding: 20px;
     }
     .header{
-        background: url(/assets/large/images/meteorit.jpg) center center no-repeat;
-        height: 550px;
+        height: 350px;
         width:100%;
         margin-top: -60px;
         display: flex;
@@ -64,20 +63,18 @@
         font-size: 42px;
         font-weight: 300;
         color:#fff;
-        text-shadow: 0 2px 4px #212112
+        text-shadow: 0 2px 4px #212112;
+        text-transform: capitalize
     }
     .container{
         width:100vw;
     }
-    .logo img{
-        width: 120px;
-    }
+  
 </style>
 <div class="container">
-    <div class="autor-wrapper">
-        <img src="[[data.avatar_urls.96]]" alt="[[data.name]]">
-<h4>[[data.name]]</h4>
-<h5>Număr total de articole: [[totalPosts]]</h5>
+    <div class="header" >
+<h1>[[data.name]]</h1>
+<h2>Număr de articole [[data.count]]</h2>
 </div>
 
 <post-card post="{{posts}}"></post-card>

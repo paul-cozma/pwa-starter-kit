@@ -1,8 +1,8 @@
 import { PolymerElement, html } from '@polymer/polymer';
-import axios from 'axios';
 import template from './template.html';
 import style from './style.styl';
-class UserBox extends PolymerElement {
+import '../auth-box'
+class MainLogin extends PolymerElement {
     static get template()  {
          return html([`${template} <style>${style} </style>`])
 }
@@ -11,14 +11,9 @@ class UserBox extends PolymerElement {
  
         }
     static get properties() { return {
-        uid: {
-         type: Object,
-        },
-        author: {
-            type: Object,
-            value: () => {}
-        }
+      
     }}
-  
+   
+    
 }
-window.customElements.define('user-box', UserBox);
+window.customElements.define('main-login', MainLogin);

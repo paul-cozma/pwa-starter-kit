@@ -8,11 +8,11 @@ import { installRouter } from 'pwa-helpers/router.js';
 import { installOfflineWatcher } from 'pwa-helpers/network.js';
 import { installMediaQueryWatcher } from 'pwa-helpers/media-query.js';
 import { updateMetadata } from 'pwa-helpers/metadata.js';
-import { config } from '../../config'
+
 import { store } from '../../store.js';
 import { navigate, updateOffline, updateDrawerState, updateLayout, setProductId } from '../../actions/app.js';
 
-class MainAutor extends  connect(store)(PolymerElement) {
+class MainTag extends  connect(store)(PolymerElement) {
     static get template()  {
          return html([`${template} <style>${style} </style>`])
 }
@@ -21,9 +21,9 @@ class MainAutor extends  connect(store)(PolymerElement) {
  
         }
     static get properties() { return {
-        autor: {
+        tag: {
          type: String,
-         observer: '_idChanged'
+         observer: '_tagChanged'
         },
         data: {
             type: Object,
@@ -36,16 +36,15 @@ class MainAutor extends  connect(store)(PolymerElement) {
         pageNumber: {
             type: Number,
             value: 1
-        },
-        totalPosts: Number
+        }
     }}
     _stateChanged(state) {
         
       }
-    _idChanged(name){
+    _tagChanged(name){
         this.set('posts', [])
         this.set('pageNumber', 1)
-        axios(`${config.url}/users/?_embed&slug=${name}`).then(data => {
+        axios(`http://127.0.0.1/wp-json/wp/v2/tags/?_embed&slug=${name}`).then(data => {
             console.log(data)
             this.data = data.data[0]
             updateMetadata({
@@ -53,7 +52,6 @@ class MainAutor extends  connect(store)(PolymerElement) {
                 title:  this.data.name + ' | Soulmatters.ro',
                 description: 'Fii și tu autor pe soulmatters.ro',
                 url: document.location.href,
-                image: '/content' +  this.data.avatar_urls[96]
             });
             console.log(this.data)
            this.getPosts(data.data[0].id, this.pageNumber)
@@ -61,9 +59,8 @@ class MainAutor extends  connect(store)(PolymerElement) {
 
     }
     getPosts(id, page){
-        axios(`${config.url}/posts/?_embed&author=${id}&page=${page}`).then(data => {
-           this.set('totalPosts', data.headers['x-wp-total'])
-
+        axios(`http://127.0.0.1/wp-json/wp/v2/posts/?_embed&tags=${id}&page=${page}`).then(data => {
+            console.log(data)
             if(data.code === 'rest_post_invalid_page_number'){
                 this.removeEventListener('template-loaded')
                }else{
@@ -108,4 +105,4 @@ class MainAutor extends  connect(store)(PolymerElement) {
     }
    
 }
-window.customElements.define('main-autor', MainAutor);
+window.customElements.define('main-tag', MainTag);

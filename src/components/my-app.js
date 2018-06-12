@@ -8,8 +8,8 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 */
 
-import { LitElement, html } from '@polymer/lit-element';
-
+import { PolymerElement, html } from '@polymer/polymer';
+import '@polymer/paper-toast'
 import '@polymer/app-layout/app-drawer/app-drawer.js';
 import '@polymer/app-layout/app-header/app-header.js';
 import '@polymer/app-layout/app-scroll-effects/effects/waterfall.js';
@@ -18,18 +18,20 @@ import { setPassiveTouchGestures } from '@polymer/polymer/lib/utils/settings.js'
 
 import { menuIcon } from './my-icons.js';
 import './snack-bar.js';
+import '@polymer/iron-pages/iron-pages.js';
 
 import { connect } from 'pwa-helpers/connect-mixin.js';
 import { installRouter } from 'pwa-helpers/router.js';
 import { installOfflineWatcher } from 'pwa-helpers/network.js';
 import { installMediaQueryWatcher } from 'pwa-helpers/media-query.js';
 import { updateMetadata } from 'pwa-helpers/metadata.js';
-
+import '@polymer/app-route/app-route.js';
+import '@polymer/app-route/app-location.js';
 import { store } from '../store.js';
 import { navigate, updateOffline, updateDrawerState, updateLayout, setProductId } from '../actions/app.js';
 
-class MyApp extends connect(store)(LitElement) {
-  _render({appTitle, _page, _drawerOpened, _snackbarOpened, _offline}) {
+class MyApp extends connect(store)(PolymerElement) {
+  static get template() {
     // Anything that's related to rendering should be done in here.
     return html`
     <style>
@@ -159,7 +161,6 @@ class MyApp extends connect(store)(LitElement) {
         }
 
         .main-content {
-          padding-top: 107px;
         }
 
         /* The drawer button isn't shown in the wide layout, so we don't
@@ -207,37 +208,118 @@ footer a{
   color:#fff;
   text-decoration: none;
 }
+.fadeOutDown {
+    -webkit-animation: fadeOutDown 500ms ease-in-out; /* Chrome, Safari, Opera */
+    animation: fadeOutDown 500ms ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes fadeOutDown {
+    0% {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        -webkit-transform: translateY(-40px);
+    }
+}
+
+/* Standard syntax */
+@keyframes fadeOutDown {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-40px);
+    }
+}
+.fadeinDown {
+    -webkit-animation: fadeInDown 500ms ease-in-out; /* Chrome, Safari, Opera */
+    animation: fadeInDown 500ms ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        -webkit-transform: translateY(-40px);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+    }
+}
+
+/* Standard syntax */
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-40px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
     </style>
+
+    <app-location route="{{route}}"></app-location>
+    <app-route 
+      route="{{route}}" 
+      pattern="/:page" 
+      data="{{routeData}}" 
+      tail="{{tail}}">
+    </app-route>
+    <app-route 
+    route="{{route}}" 
+    pattern="/blog/:year/:month/:day/:slug" 
+    data="{{blogData}}">
+    </app-route>
+
+    <app-route 
+    route="{{route}}" 
+    pattern="/autor/:name" 
+    data="{{autorData}}">
+    </app-route>
+
+    <app-route 
+    route="{{route}}" 
+    pattern="/tag/:name" 
+    data="{{tagData}}">
+    </app-route>
 
     <!-- Header -->
     <app-header condenses reveals effects="waterfall">
       <app-toolbar class="toolbar-top">
-        <button class="menu-btn" title="Menu" on-click="${_ => store.dispatch(updateDrawerState(true))}"></button>
         <div class="main-title"> <a href="/"><img src="/images/DDD-1.png" alt=""></a> </div>
       </app-toolbar>
 
       <!-- This gets hidden on a small screen-->
       <nav class="toolbar-list">
-        <a selected?="${_page === 'home'}" href="/"></a>
+        
       </nav>
     </app-header>
     <!-- Drawer content -->
-    <app-drawer opened="${_drawerOpened}"
-        on-opened-changed="${e => store.dispatch(updateDrawerState(e.target.opened))}">
+    <app-drawer opened="{{_drawerOpened}}">
       <nav class="drawer-list">
-        <a selected?="${_page === 'home'}" href="/"></a>
+        
       </nav>
     </app-drawer>
     <!-- Main content -->
-    <main class="main-content">
-      <my-home class="page" active?="${_page === 'home'}"></my-home>
-      <my-view2 class="page" active?="${_page === 'view2'}"></my-view2>
-      <my-view3 class="page" active?="${_page === 'view3'}"></my-view3>
-      <main-blog class="page" active?="${_page === 'blog'}"></main-blog>
-      <main-autor class="page" active?="${_page === 'autor'}"></main-autor>
-      <main-termeni-si-conditii class="page" active?="${_page === 'termeni-si-conditii'}"></main-termeni-si-conditii>
-      <my-view404 class="page" active?="${_page === 'view404'}"></my-view404>
-    </main>
+    <iron-pages class="main-content" selected="[[page]]" class="menu" attr-for-selected="nume">
+      <my-home nume="acasa" ></my-home>
+      <main-blog nume="blog" slug="{{blogData.slug}}" ></main-blog>
+      <main-autor nume="autor" autor="{{autorData.name}}" ></main-autor>
+      <main-login nume="login" ></main-login>
+      <main-tag nume="tag" tag="{{tagData.name}}" ></main-tag>
+      <main-termeni-si-conditii nume="termeni-si-conditii" ></main-termeni-si-conditii>
+    </iron-pages>
 
     <footer>
     <div class="wrapper">
@@ -245,27 +327,78 @@ footer a{
       <div> <a href="/termeni-si-conditii">Termeni și condiții</a> </div>
     </div>
     </footer>
-
-    <snack-bar active?="${_snackbarOpened}">
-       Acum ești ${_offline ? 'offline' : 'online'}.</snack-bar>
+    <paper-toast  id="toast" text="Bun venit!"></paper-toast>
+  
     `;
   }
 
   static get properties() {
     return {
       appTitle: String,
-      _page: String,
+      page: {
+        type: String,
+        notify: true,
+        observer: '_pageChanged'
+      },
       _drawerOpened: Boolean,
       _snackbarOpened: Boolean,
-      _offline: Boolean
+      _offline: {
+        type: Boolean,
+        value: false,
+        observer: '_offlineChanged'
+      },
+      blogData: String,
+      route: String,
+      routeData: String
     }
   }
+  _offlineChanged(status, old){
+    if(status){
+      this.$.toast.text = 'Acum sunteți offline'
+    }else if(old){
+      this.$.toast.text = 'Acum sunteți online'
 
+    }
+    this.$.toast.open()
+  }
+  static get observers() {
+    return [
+      '_routePageChanged(routeData.page)',
+    ];
+  }
+  _routePageChanged(page) {   
+    this.page = page || 'acasa';
+   
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
+_pageChanged(page, old){
+  this.shadowRoot.querySelector(`[nume=${old || 'acasa'}]`).classList.add('fadeinUp')
+  this.shadowRoot.querySelector(`[nume=${page || 'acasa'}]`).classList.add('fadeinDown')
+  switch (page) {
+      case 'acasa':
+          return import('./my-home')
+          break;
+      case 'blog':
+          return import('./main-blog')
+          break;
+      case 'autor':
+          return import('./main-autor')
+          break;
+      case 'tag':
+          return import('./main-tag')
+          break;
+      case 'login':
+          return import('./main-login')
+          break;
+  }
+}
   constructor() {
     super();
     // To force all event listeners for gestures to be passive.
     // See https://www.polymer-project.org/2.0/docs/devguide/gesture-events#use-passive-gesture-listeners
     setPassiveTouchGestures(true);
+    installOfflineWatcher((offline) => store.dispatch(updateOffline(offline)));
   }
 
   _firstRendered() {
@@ -290,12 +423,9 @@ footer a{
   }
 
   _stateChanged(state) {
-    this._page = state.app.page;
     this._offline = state.app.offline;
     this._snackbarOpened = state.app.snackbarOpened;
     this._drawerOpened = state.app.drawerOpened;
-    document.body.scrollTop = 0; // For Safari
-    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
   }
 }
 

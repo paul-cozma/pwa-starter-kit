@@ -1,0 +1,15 @@
+<div class="container">
+    <marked-element markdown="[[article.title.rendered]]">
+        <h1 slot="markdown-html"></h1>
+      </marked-element>
+    <h3>[[date(article.attributes.date)]]</h3>
+    <iron-image  src="[[article._embedded.wp:featuredmedia.0.media_details.sizes.twentyseventeen-featured-image.source_url]]" placeholder="[[article._embedded.wp:featuredmedia.0.media_details.sizes.thumbnail.source_url]]" sizing="cover" fade preload alt=""></iron-image>
+    <div class="wrapper">
+<image-loader></image-loader>
+<marked-element markdown="[[article.content.rendered]]">
+        <div slot="markdown-html"></div>
+      </marked-element>
+      <user-box uid="[[article._embedded.author.0]]"></user-box>
+      <comment-box post="[[article.id]]"> </comment-box>
+    </div>
+</div>

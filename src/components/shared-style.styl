@@ -1,5 +1,48 @@
-<style include="paper-styles">
-    .wrapper{
+:host {
+    display: block;
+    box-sizing: border-box;
+  }
+
+  section {
+    padding: 24px;
+    background: var(--app-section-odd-color);
+  }
+
+  section > * {
+    max-width: 1200px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  section:nth-of-type(even) {
+    background: var(--app-section-even-color);
+  }
+
+  h2 {
+    font-size: 24px;
+    text-align: center;
+    color: var(--app-dark-text-color);
+  }
+
+  @media (min-width: 460px) {
+    h2 {
+      font-size: 36px;
+    }
+  }
+
+  .circle {
+    display: block;
+    width: 64px;
+    height: 64px;
+    margin: 0 auto;
+    text-align: center;
+    border-radius: 50%;
+    background: var(--app-primary-color);
+    color: var(--app-light-text-color);
+    font-size: 30px;
+    line-height: 64px;
+  }
+  .wrapper{
         max-width: 1200px;
         width: 100%;
         margin: 20px auto;
@@ -49,7 +92,6 @@
         padding: 20px;
     }
     .header{
-        background: url(/assets/large/images/meteorit.jpg) center center no-repeat;
         height: 550px;
         width:100%;
         margin-top: -60px;
@@ -64,7 +106,9 @@
         font-size: 42px;
         font-weight: 300;
         color:#fff;
-        text-shadow: 0 2px 4px #212112
+        text-shadow: 0 2px 4px #212112;
+        text-align: center;
+        
     }
     .container{
         width:100vw;
@@ -72,14 +116,3 @@
     .logo img{
         width: 120px;
     }
-</style>
-<div class="container">
-    <div class="autor-wrapper">
-        <img src="[[data.avatar_urls.96]]" alt="[[data.name]]">
-<h4>[[data.name]]</h4>
-<h5>Număr total de articole: [[totalPosts]]</h5>
-</div>
-
-<post-card post="{{posts}}"></post-card>
-
-</div>

@@ -1,0 +1,33 @@
+<div class="container">
+<h3>Comentarii ([[count(comments)]])</h3>
+    <template is="dom-repeat" items="{{comments}}">
+        <div class="comment_wrapper">
+            <a href="[[item.author_url]]" class="author_wrapper">
+                <img src="[[item.author_avatar_urls.48]]" alt=""> 
+            </a>
+           
+            <div class="comment">
+                <div class="author">
+                <a href="[[item.author_url]]">
+                    <h4>[[item.author_name]]</h4>
+                    
+                </a>
+                <span>&nbsp;&#9679;&nbsp;</span>
+                    <h4>[[date(item.date)]]</h4>
+            </div>
+                <marked-element markdown="[[item.content.rendered]]">
+                    <div slot="markdown-html"></div>
+                </marked-element>
+            </div>
+        </div>
+    </template>
+    <div class="comment">
+        <h3>Lasă comentariul tău aici</h3>
+        <input type="text" placeholder="Nume" id="name">
+        <input type="text" placeholder="Website" id="website">
+        <input type="text" placeholder="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" id="email">
+        <textarea name="message" id="mesaj" cols="30" rows="10" placeholder="Mesaj"></textarea>
+        <paper-button on-tap="sendComment">Trimite</paper-button>
+    </div>
+    <paper-toast></paper-toast>
+</div>
