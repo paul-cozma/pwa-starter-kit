@@ -49,6 +49,14 @@ const copyStatics = {
     from: resolve('./src/manifest.json'),
     to: OUTPUT_PATH,
     flatten: true
+  }, {
+    from: resolve('./src/_redirects'),
+    to: OUTPUT_PATH,
+    flatten: true
+  }, {
+    from: resolve('./src/admin/**'),
+    to: `${OUTPUT_PATH}/admin`,
+    flatten: true
   }]
 };
 
