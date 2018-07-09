@@ -391,6 +391,9 @@ _pageChanged(page, old){
       case 'login':
           return import('./main-login')
           break;
+      case 'termeni-si-conditii':
+          return import('./main-termeni-si-conditii')
+          break;
   }
 }
   constructor() {

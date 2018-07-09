@@ -11,10 +11,7 @@ class MainTermeniSiConditii extends PolymerElement {
     static get template()  {
          return html([`${template} <style>${style} </style>`])
 }
-    ready(){
-        super.ready()
- 
-        }
+  
     static get properties() { return {
         uid: {
          type: String,
@@ -27,15 +24,18 @@ class MainTermeniSiConditii extends PolymerElement {
     }}
     ready(){
         super.ready()
-        const page = require('../../data/_pages/termeni-și-condiții.md')
-        this.page = page
-        updateMetadata({
+        fetch('https://api.soulmatters.ro/wp-json/wp/v2/pages/1198?_embed').then(res => res.json()).then(page => {
+            this.page = page
+            updateMetadata({
                 
-            title:  this.page.attributes.title + ' | Soulmatters.ro',
-            description: 'Fii și tu autor pe soulmatters.ro',
-            url: document.location.href,
-            image: '/content' +  this.page.attributes.image
-        });
+                title: page.title.rendered + ' | Soulmatters.ro',
+                description: 'Fii și tu autor pe soulmatters.ro',
+                url: document.location.href,
+                image: page._embedded["wp:featuredmedia"]["0"].media_details.sizes.thumbnail.source_url
+            });
+        })
+
+       
         console.log(this.page)
     }
 }
