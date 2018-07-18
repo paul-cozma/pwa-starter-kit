@@ -2,7 +2,7 @@
         <template is="dom-repeat" items="{{post}}" on-dom-change="observe">
         <div class="item">
                 <a class="iron-image" href="/blog/[[year(item.attributes.date)]]/[[month(item.attributes.date)]]/[[day(item.attributes.date)]]/[[item.slug]]">
-                    <iron-image  prevent-load preload placeholder="[[item._embedded.wp:featuredmedia.0.media_details.sizes.thumbnail.source_url]]" src="[[item._embedded.wp:featuredmedia.0.media_details.sizes.medium.source_url]]"    sizing="cover" fade   alt="">
+                    <iron-image  prevent-load preload src="[[removeHttp(item._embedded.wp:featuredmedia.0.source_url)]]?w=600&q=80" placeholder="[[removeHttp(item._embedded.wp:featuredmedia.0.source_url)]]?w=20&q=75"    sizing="cover" fade   alt="">
                     </iron-image>
                 </a>
            <div class="meta">
@@ -20,7 +20,7 @@
       <autor-card uid="[[item._embedded.author.0]]"></autor-card> 
       <div class="tags">
       <template is="dom-repeat" items="{{item._embedded.wp:term.1}}">
-        <a href="/tag/[[item.slug]]" class="tag">#[[item.name]] </a>
+        <span  class="tag">#[[item.name]] </span>
     </template>
 </div>
     </div>

@@ -23,8 +23,14 @@ class MainTermeniSiConditii extends PolymerElement {
         }
     }}
     removeHttp(source){
-        console.log(source)
-        return source.replace('https://', '')
+        console.log(source, 'asasdasd')
+        if(source === undefined){
+            return
+        }else{
+            const image = 'https://i0.wp.com/' + source.replace('https://', '')
+            console.log(image)
+            return image
+        }
     }
     ready(){
         super.ready()

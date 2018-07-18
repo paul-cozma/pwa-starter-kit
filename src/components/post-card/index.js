@@ -67,5 +67,13 @@ const observer = new IntersectionObserver(entries => {
 
 
     }
+    removeHttp(source){
+      if(source === undefined){
+          return
+      }else{
+          const image = 'https://i0.wp.com/' + source.replace('https://', '')
+          return image
+      }
+  }
 }
 window.customElements.define('post-card', PostCard);
