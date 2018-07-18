@@ -1,7 +1,7 @@
 <div class="container">
 
         <h1>[[page.title.rendered]]</h1>
-        <iron-image  src="[[page._embedded.wp:featuredmedia.0.media_details.sizes.full.source_url]]" placeholder="[[page._embedded.wp:featuredmedia.0.media_details.sizes.thumbnail.source_url]]"  sizing="cover" fade preload alt=""></iron-image>
+        <iron-image  src="https://i0.wp.com[[removeHttp(page._embedded.wp:featuredmedia.0.source_url)]]" placeholder="[[page._embedded.wp:featuredmedia.0.media_details.sizes.thumbnail.source_url]]"  sizing="cover" fade preload alt=""></iron-image>
         <div class="wrapper">
     <marked-element markdown="[[page.content.rendered]]">
             <div slot="markdown-html"></div>

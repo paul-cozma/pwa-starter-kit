@@ -22,6 +22,10 @@ class MainTermeniSiConditii extends PolymerElement {
             value: () => {}
         }
     }}
+    removeHttp(source){
+        console.log(source)
+        return source.replace('https://', '')
+    }
     ready(){
         super.ready()
         fetch('https://api.soulmatters.ro/wp-json/wp/v2/pages/1198?_embed').then(res => res.json()).then(page => {

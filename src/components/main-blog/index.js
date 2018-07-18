@@ -48,7 +48,11 @@ export class  MainBlog extends connect(store)(PolymerElement)  {
      const blog = await fetch(`${config.url}/posts/?_embed&slug=${post}`).then(data => data.json())
           console.log(blog)
           this.article = blog[0]
-  
+          updateMetadata({
+              title: `${blog[0].title.rendered} | Soulmatters.ro`,
+              description: `${blog[0].content.rendered.replace(/<(?:.|\n)*?>/gm, '').substr(0, 200)}`,
+              image: this.removeHttp(blog[0]._embedded['wp:featuredmedia'][0].source_url) + '?w=700&q=80'
+          })
         console.log(post, 'fsdoapsdop')
        
     }
@@ -61,6 +65,16 @@ export class  MainBlog extends connect(store)(PolymerElement)  {
         moment.locale('ro');
 
         return moment(date).format("Do MMMM, YYYY")
+    }
+    removeHttp(source){
+        console.log(source, 'asasdasd')
+        if(source === undefined){
+            return
+        }else{
+            const image = 'https://i0.wp.com/' + source.replace('https://', '')
+            console.log(image)
+            return image
+        }
     }
 
 }
