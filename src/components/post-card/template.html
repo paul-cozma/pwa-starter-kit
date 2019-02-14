@@ -1,12 +1,12 @@
 <div class="wrapper" id="wrapper">
         <template is="dom-repeat" items="{{post}}" on-dom-change="observe">
         <div class="item">
-                <a class="iron-image" href="/blog/[[year(item.attributes.date)]]/[[month(item.attributes.date)]]/[[day(item.attributes.date)]]/[[item.slug]]">
+                <a class="iron-image" href="/blog/[[year(item.date)]]/[[month(item.date)]]/[[day(item.date)]]/[[item.slug]]">
                     <iron-image  prevent-load preload src="[[removeHttp(item._embedded.wp:featuredmedia.0.source_url)]]?w=600&q=80" placeholder="[[removeHttp(item._embedded.wp:featuredmedia.0.source_url)]]?w=20&q=75"    sizing="cover" fade   alt="">
                     </iron-image>
                 </a>
            <div class="meta">
-            <a href="/blog/[[year(item.attributes.date)]]/[[month(item.attributes.date)]]/[[day(item.attributes.date)]]/[[item.slug]]">
+            <a href="/blog/[[year(item.date)]]/[[month(item.date)]]/[[day(item.date)]]/[[item.slug]]">
                 <marked-element markdown="[[item.title.rendered]]">
                     <h3 slot="markdown-html"></h3>
                   </marked-element>

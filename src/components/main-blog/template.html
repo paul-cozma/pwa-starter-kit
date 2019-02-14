@@ -2,7 +2,7 @@
     <marked-element markdown="[[article.title.rendered]]">
         <h1 slot="markdown-html"></h1>
       </marked-element>
-    <h3>[[date(article.attributes.date)]]</h3>
+    <h3>[[date(article.date)]]</h3>
     <iron-image  src="[[removeHttp(article._embedded.wp:featuredmedia.0.source_url)]]?w=2000&q=80" placeholder="[[removeHttp(article._embedded.wp:featuredmedia.0.source_url)]]?w=20&q=80" sizing="cover" fade preload alt=""></iron-image>
     <div class="wrapper">
 <image-loader></image-loader>
