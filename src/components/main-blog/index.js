@@ -100,9 +100,9 @@ export class MainBlog extends connect(store)(PolymerElement) {
     }
     removeHttp(source, image) {
         if (image !== null) {
-            return 'https://api.scentrum.ro' + image.url
+            return 'https://api.soulmatters.ro' + image.url
         } else {
-            return 'https://api.scentrum.ro' + source
+            return 'https://api.soulmatters.ro' + source
         }
     }
 

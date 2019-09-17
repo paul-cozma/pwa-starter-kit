@@ -25,7 +25,7 @@ class UserBox extends PolymerElement {
         }
     }
     addURL(img) {
-        return 'https://api.scentrum.ro' + img
+        return 'https://api.soulmatters.ro' + img
     }
 }
 window.customElements.define('user-box', UserBox);

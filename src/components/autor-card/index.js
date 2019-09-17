@@ -21,7 +21,7 @@ class AutorCard extends PolymerElement {
         }
     }
     addURL(img) {
-        return 'https://api.scentrum.ro' + img
+        return 'https://api.soulmatters.ro' + img
     }
 }
 window.customElements.define('autor-card', AutorCard);

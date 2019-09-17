@@ -75,9 +75,9 @@ class PostCard extends PolymerElement {
   }
   removeHttp(source, image) {
     if (image !== null) {
-      return 'https://api.scentrum.ro' + image.url
+      return 'https://api.soulmatters.ro' + image.url
     } else {
-      const image = 'https://api.scentrum.ro' + source
+      const image = 'https://api.soulmatters.ro' + source
       return image
     }
   }

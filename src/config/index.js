@@ -1,3 +1,3 @@
 export const config = {
-  url: "https://api.scentrum.ro"
+  url: "https://api.soulmatters.ro"
 };
