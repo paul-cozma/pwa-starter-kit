@@ -61,7 +61,7 @@ class MyHome extends connect(store)(PolymerElement) {
       page: Object,
       pageNumber: {
         type: Number,
-        value: 1
+        value: 0
       }
     }
   }
@@ -80,18 +80,18 @@ class MyHome extends connect(store)(PolymerElement) {
   }
   async getPosts(page) {
     this.loading = true
-    fetch(`${config.url}/posts`).then(data => data.json()).then(res => {
-      console.log('such resss', res)
+    fetch(`${config.url}/posts?_start=${page}&_limit=6`).then(data => data.json()).then(res => {
       if (page === 1) {
         this.data = res
         this.loading = false
-
-      } else if (res.code === 'rest_post_invalid_page_number') {
-        this.removeEventListener('template-loaded')
+      } else if (res.length == 0) {
+        this.removeEventListener('template-loaded', null)
+        this.loading = false
       } else {
 
         this.set('data', this.data.concat(res))
         this.loading = false
+        this.pageNumber = this.pageNumber + 10
       }
     }).catch(err => {
       console.log(err)
