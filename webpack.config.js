@@ -1,9 +1,14 @@
 'use strict';
 
-const {resolve, join} = require('path');
+const {
+  resolve,
+  join
+} = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
-const {GenerateSW} = require('workbox-webpack-plugin');
+const {
+  GenerateSW
+} = require('workbox-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const pkg = require('./package.json');
@@ -25,23 +30,24 @@ const processEnv = {
  */
 const copyStatics = {
   copyWebcomponents: [{
-    from: resolve('./node_modules/@webcomponents/webcomponentsjs/*.js'),
-    to: join(OUTPUT_PATH, 'vendor'),
-    flatten: true
-  }, 
-  {
-    from: resolve('./node_modules/@webcomponents/shadycss/*.js'),
-    to: join(OUTPUT_PATH, 'vendor'),
-    flatten: true
-  }, {
-    from: resolve('./node_modules/@webcomponents/webcomponentsjs/bundles/*.js'),
-    to: join(OUTPUT_PATH, 'vendor/bundles'),
-    flatten: true
-  },  {
-    from: resolve('./node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js'),
-    to: join(OUTPUT_PATH, 'vendor'),
-    flatten: true
-  }],
+      from: resolve('./node_modules/@webcomponents/webcomponentsjs/*.js'),
+      to: join(OUTPUT_PATH, 'vendor'),
+      flatten: true
+    },
+    {
+      from: resolve('./node_modules/@webcomponents/shadycss/*.js'),
+      to: join(OUTPUT_PATH, 'vendor'),
+      flatten: true
+    }, {
+      from: resolve('./node_modules/@webcomponents/webcomponentsjs/bundles/*.js'),
+      to: join(OUTPUT_PATH, 'vendor/bundles'),
+      flatten: true
+    }, {
+      from: resolve('./node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js'),
+      to: join(OUTPUT_PATH, 'vendor'),
+      flatten: true
+    }
+  ],
   copyOthers: [{
     from: 'images/**',
     context: resolve('./src'),
@@ -68,7 +74,9 @@ const copyStatics = {
 /**
  * Plugin configuration
  */
-const sharedPlugins = [new webpack.DefinePlugin({'process.env': processEnv})];
+const sharedPlugins = [new webpack.DefinePlugin({
+  'process.env': processEnv
+})];
 const devPlugins = [new CopyWebpackPlugin(copyStatics.copyWebcomponents)];
 const buildPlugins = [
   new CopyWebpackPlugin(
@@ -98,8 +106,7 @@ const shared = env => {
       filename: IS_MODULE_BUILD ? 'module.bundle.js' : 'bundle.js'
     },
     module: {
-      rules: [
-        {
+      rules: [{
           test: /\.html$/,
           use: ['text-loader']
         },
@@ -118,13 +125,12 @@ const shared = env => {
             {
               loader: 'stylus-loader'
             }
-           
+
           ]
         },
         {
           test: /\.css$/,
-          use: [
-            {
+          use: [{
               loader: 'to-string-loader'
             },
             {
@@ -132,7 +138,7 @@ const shared = env => {
             }
           ]
         }
-      
+
       ]
     },
     plugins,
@@ -142,7 +148,7 @@ const shared = env => {
       overlay: {
         errors: true
       },
-      port: 6060,
+      port: 9999,
       host: '0.0.0.0',
       disableHostCheck: true,
       historyApiFallback: true,

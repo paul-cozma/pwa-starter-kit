@@ -1,10 +1,12 @@
 <div class="container">
 
-        <h1>[[page.title.rendered]]</h1>
-        <iron-image  src="[[removeHttp(page._embedded.wp:featuredmedia.0.source_url)]]?w=2000&q=80" placeholder="[[removeHttp(page._embedded.wp:featuredmedia.0.source_url)]]?w=20"  sizing="cover" fade preload alt=""></iron-image>
-        <div class="wrapper">
-    <marked-element markdown="[[page.content.rendered]]">
-            <div slot="markdown-html"></div>
-          </marked-element>
-        </div>
-    </div>
+  <h1>[[page.title]]</h1>
+  <iron-image src="https://api.scentrum.ro/uploads/2018/06/steinar-engeland-225236-2-1500x1000.jpg" sizing="cover" fade
+    preload alt="">
+  </iron-image>
+  <div class="wrapper">
+    <marked-element markdown="[[page.body]]">
+      <div slot="markdown-html"></div>
+    </marked-element>
+  </div>
+</div>

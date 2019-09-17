@@ -1,15 +1,17 @@
 <div class="container">
-    <marked-element markdown="[[article.title.rendered]]">
-        <h1 slot="markdown-html"></h1>
-      </marked-element>
+  <template is="dom-if" if="[[!loading]]">
+    <marked-element markdown="[[article.Title]]">
+      <h1 slot="markdown-html"></h1>
+    </marked-element>
     <h3>[[date(article.date)]]</h3>
-    <iron-image  src="[[removeHttp(article._embedded.wp:featuredmedia.0.source_url)]]?w=2000&q=80" placeholder="[[removeHttp(article._embedded.wp:featuredmedia.0.source_url)]]?w=20&q=80" sizing="cover" fade preload alt=""></iron-image>
+    <iron-image src="[[removeHttp(article.imagine, article.image)]]"
+      placeholder="[[removeHttp(article.imagine, article.image)]]" sizing="cover" fade preload alt=""></iron-image>
     <div class="wrapper">
-<image-loader></image-loader>
-<marked-element markdown="[[article.content.rendered]]">
+      <image-loader></image-loader>
+      <marked-element markdown="[[article.body]]">
         <div slot="markdown-html"></div>
       </marked-element>
-      <user-box uid="[[article._embedded.author.0]]"></user-box>
-      <comment-box post="[[article.id]]"> </comment-box>
+      <user-box uid="[[article.user]]"></user-box>
     </div>
+  </template>
 </div>

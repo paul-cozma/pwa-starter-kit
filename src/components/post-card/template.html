@@ -1,38 +1,37 @@
 <div class="wrapper" id="wrapper">
-        <template is="dom-repeat" items="{{post}}" on-dom-change="observe">
+    <template is="dom-repeat" items="{{post}}" on-dom-change="observe">
         <div class="item">
-                <a class="iron-image" href="/blog/[[year(item.date)]]/[[month(item.date)]]/[[day(item.date)]]/[[item.slug]]">
-                    <iron-image  prevent-load preload src="[[removeHttp(item._embedded.wp:featuredmedia.0.source_url)]]?w=600&q=80" placeholder="[[removeHttp(item._embedded.wp:featuredmedia.0.source_url)]]?w=20&q=75"    sizing="cover" fade   alt="">
-                    </iron-image>
-                </a>
-           <div class="meta">
-            <a href="/blog/[[year(item.date)]]/[[month(item.date)]]/[[day(item.date)]]/[[item.slug]]">
-                <marked-element markdown="[[item.title.rendered]]">
-                    <h3 slot="markdown-html"></h3>
-                  </marked-element>
+            <a class="iron-image"
+                href="/blog/[[year(item.date)]]/[[month(item.date)]]/[[day(item.date)]]/[[item.permalink]]">
+                <iron-image prevent-load preload src="[[removeHttp(item.imagine, item.image)]]"
+                    placeholder="[[removeHttp(item.imagine, item.image)]]" sizing="cover" fade alt="">
+                </iron-image>
             </a>
-            
-            
-            
-        <marked-element markdown="[[item.excerpt.rendered]]">
-            <div slot="markdown-html"></div>
-          </marked-element>
-      <autor-card uid="[[item._embedded.author.0]]"></autor-card> 
-      <div class="tags">
-      <template is="dom-repeat" items="{{item._embedded.wp:term.1}}">
-        <span  class="tag">#[[item.name]] </span>
+            <div class="meta">
+                <a href="/blog/[[year(item.date)]]/[[month(item.date)]]/[[day(item.date)]]/[[item.permalink]]">
+                    <marked-element markdown="[[item.Title]]">
+                        <h3 slot="markdown-html"></h3>
+                    </marked-element>
+                </a>
+
+
+
+                <marked-element markdown="[[substr(item.body)]]">
+                    <div slot="markdown-html"></div>
+                </marked-element>
+                <autor-card uid="[[item.user]]"></autor-card>
+
+            </div>
+        </div>
     </template>
 </div>
-    </div>
-</div>
-</template>
-        </div>
-    <style>
+<style>
     .item {
         @apply --shadow-elevation-2dp;
         transition: all .3s ease-in-out;
     }
+
     .item:hover {
         @apply --shadow-elevation-6dp;
     }
-    </style>
+</style>
