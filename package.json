@@ -4,7 +4,6 @@
   "contributors": [
     "The Polymer Authors"
   ],
-  "flat": true,
   "license": "BSD-3-Clause",
   "repository": "Polymer/pwa-starter-kit",
   "scripts": {

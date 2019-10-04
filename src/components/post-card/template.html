@@ -1,37 +1,27 @@
 <div class="wrapper" id="wrapper">
-    <template is="dom-repeat" items="{{post}}" on-dom-change="observe">
-        <div class="item">
-            <a class="iron-image"
-                href="/blog/[[year(item.date)]]/[[month(item.date)]]/[[day(item.date)]]/[[item.permalink]]">
-                <iron-image prevent-load preload src="[[removeHttp(item.imagine, item.image)]]"
-                    placeholder="[[removeHttp(item.imagine, item.image)]]" sizing="cover" fade alt="">
-                </iron-image>
-            </a>
-            <div class="meta">
-                <a href="/blog/[[year(item.date)]]/[[month(item.date)]]/[[day(item.date)]]/[[item.permalink]]">
-                    <marked-element markdown="[[item.Title]]">
-                        <h3 slot="markdown-html"></h3>
-                    </marked-element>
-                </a>
+  <template is="dom-repeat" items="{{post}}" on-dom-change="observe">
+    <div class="item">
+      <a class="img" href="/blog/[[year(item.date)]]/[[month(item.date)]]/[[day(item.date)]]/[[item.permalink]]">
+        <img loading="lazy" src="[[removeHttp(item.imagine, item.image)]]" sizing="cover" alt=""[[item.Title]]" />
+      </a>
+      <div class="meta">
+        <a href="/blog/[[year(item.date)]]/[[month(item.date)]]/[[day(item.date)]]/[[item.permalink]]">
+          <marked-element markdown="[[item.Title]]"> <h3 slot="markdown-html"></h3> </marked-element>
+        </a>
 
-
-
-                <marked-element markdown="[[substr(item.body)]]">
-                    <div slot="markdown-html"></div>
-                </marked-element>
-                <autor-card uid="[[item.user]]"></autor-card>
-
-            </div>
-        </div>
-    </template>
+        <marked-element markdown="[[substr(item.body)]]"> <div slot="markdown-html"></div> </marked-element>
+        <autor-card uid="[[item.user]]"></autor-card>
+      </div>
+    </div>
+  </template>
 </div>
 <style>
-    .item {
-        @apply --shadow-elevation-2dp;
-        transition: all .3s ease-in-out;
-    }
+  .item {
+    @apply --shadow-elevation-2dp;
+    transition: all 0.3s ease-in-out;
+  }
 
-    .item:hover {
-        @apply --shadow-elevation-6dp;
-    }
+  .item:hover {
+    @apply --shadow-elevation-6dp;
+  }
 </style>
