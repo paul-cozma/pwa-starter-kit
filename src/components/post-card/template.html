@@ -9,7 +9,7 @@
           <marked-element markdown="[[item.Title]]"> <h3 slot="markdown-html"></h3> </marked-element>
         </a>
 
-        <marked-element markdown="[[substr(item.body)]]"> <div slot="markdown-html"></div> </marked-element>
+        <marked-element markdown="[[substr(item.body, index)]]"> <div slot="markdown-html"></div> </marked-element>
         <autor-card uid="[[item.user]]"></autor-card>
       </div>
     </div>

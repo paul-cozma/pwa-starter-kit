@@ -77,8 +77,9 @@ class PostCard extends PolymerElement {
       return image;
     }
   }
-  substr(body) {
-    return (body.substr(0, 240) + "...").replace(/<\/?[^>]+(>|$)/g, "");
+  substr(body, index) {
+    let length = index === 0 ? 340 : 240;
+    return (body.substr(0, length) + "...").replace(/<\/?[^>]+(>|$)/g, "");
   }
 }
 window.customElements.define("post-card", PostCard);
