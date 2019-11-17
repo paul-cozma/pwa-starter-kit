@@ -80,7 +80,7 @@ class MyHome extends connect(store)(PolymerElement) {
   }
   async getPosts(page) {
     this.loading = true
-    fetch(`${config.url}/posts?_start=${page}&_limit=6&_sort=createdAt:desc`).then(data => data.json()).then(res => {
+    fetch(`${config.url}/posts?_start=${page}&_limit=6&_sort=createdAt:desc&published=true`).then(data => data.json()).then(res => {
       if (page === 1) {
         this.data = res
         this.loading = false
