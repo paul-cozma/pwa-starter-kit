@@ -12,7 +12,6 @@
     "build:prod": "webpack --env.BROWSERS=module --env.NODE_ENV=production && webpack --env.NODE_ENV=production ",
     "dev": "webpack-dev-server --hot --inline",
     "dev:module": "webpack-dev-server --env.BROWSERS=module --inline",
-    "test:lighthouse": "concurrently --kill-others \"http-server dist\" \"lighthouse --view http://localhost:8080\" "
   },
   "dependencies": {
     "@polymer/app-layout": "^3.0.0-pre.15",
