@@ -323,7 +323,7 @@ footer a{
 
     <footer>
     <div class="wrapper">
-      <div>Soulmatters © 2012 - 2019</div>
+      <div>Soulmatters © 2012 - 2020</div>
       <div> <a href="/termeni-si-conditii">Termeni și condiții</a> </div>
     </div>
     </footer>
