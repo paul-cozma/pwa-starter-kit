@@ -76,7 +76,7 @@ iron-image {
   font-size: 22px;
   font-weight: 300;
   line-height: 1.5em;
-webkit-user-modify:read-write-plaintext-only;
+-webkit-user-modify:read-write-plaintext-only;
 }
 
 h1 {
