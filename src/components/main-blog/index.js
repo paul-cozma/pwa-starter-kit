@@ -62,7 +62,7 @@ iron-image {
   margin: 0 auto;
   margin-top: -150px;
   background: #fff;
-  padding: 100px 70px;
+  padding: 30px 70px;
   z-index: 99;
   position: relative;
   box-sizing: border-box;
